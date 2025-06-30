@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# Default appname
+APPNAME=""
+
+# Look for a dotfile
+if [[ -f .nvim.lua ]]; then
+  # Read the appname from the file, or default to "project"
+  APPNAME=$(cat .nvim.lua | head -n 1)
+elif [[ -f .nvim ]]; then
+  APPNAME=$(cat .nvim | head -n 1)
+fi
+
+# If we found an appname, use it. Else launch normally.
+if [[ -n "$APPNAME" ]]; then
+  echo "Launching Neovim with profile: $APPNAME"
+  NVIM_APPNAME="$APPNAME" nvim "$@"
+else
+  echo "Launching default Neovim"
+  nvim "$@"
+fi

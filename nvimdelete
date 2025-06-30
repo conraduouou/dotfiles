@@ -1,0 +1,24 @@
+#!/bin/bash
+APPNAME="$1"
+
+if [ "$APPNAME" = "nvim" ] || [ -z "$APPNAME" ]; then
+  echo "Thou shalt not delete the sacred main config, knave!"
+  exit 1
+fi
+
+echo "Are you sure you want to delete '$APPNAME' config? [y/N] "
+read choice
+
+if [[ "$choice" =~ ^[Nn]$ ]]; then
+  echo "Exiting..."
+  exit 0
+fi
+
+echo "Deleting profile: $APPNAME"
+
+rm -rf ~/.config/"$APPNAME"
+rm -rf ~/.local/share/"$APPNAME"
+rm -rf ~/.cache/"$APPNAME"
+
+echo "Profile '$APPNAME' has been banished from the realm!"
+
