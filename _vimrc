@@ -21,6 +21,12 @@ set cursorline
 set cursorlineopt=number
 highlight CursorLineNr guifg=#000000 guibg=#ffff00 gui=NONE
 
+" Errors
+highlight CocErrorHighlight gui=undercurl guisp=Red
+highlight CocWarningHighlight gui=undercurl guisp=Orange
+highlight CocInfoHighlight gui=undercurl guisp=Blue
+highlight CocHintHighlight gui=undercurl guisp=Gray
+
 " Normal mode
 nnoremap <leader>h :nohlsearch<CR>
 nnoremap <C-d> <C-d>zz
@@ -51,11 +57,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-commentary'
 
 " Custom colors:
-let g:indentLine_setColors = 0
-let g:indentLine_color_term = 239       " Terminal Vim
-let g:indentLine_color_gui = '#555555'  " GUI Vim
-let g:indentLine_char = '│'    " character for the line
-let g:indentLine_enabled = 1
 highlight Conceal ctermfg=239 guifg=#555555 ctermbg=NONE guibg=NONE
 Plug 'Yggdroot/indentLine'
 
