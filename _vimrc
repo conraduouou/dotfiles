@@ -41,6 +41,8 @@ vnoremap < <gv
 " Insert mode
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <Enter> pumvisible() ? "\<C-y>" : "\<Enter>"
+
 
 " Escape remaps
 inoremap jk <Esc>
