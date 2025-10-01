@@ -5,6 +5,7 @@ set clipboard=unnamed
 set autowrite
 set showcmd
 set termguicolors
+set shell=pwsh.exe
 
 set autoread
 set updatetime=50
@@ -36,6 +37,10 @@ nnoremap G Gzz
 " Visual mode
 vnoremap > >gv
 vnoremap < <gv
+
+" Insert mode
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " Escape remaps
 inoremap jk <Esc>
