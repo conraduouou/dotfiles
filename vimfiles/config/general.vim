@@ -1,0 +1,12 @@
+" General
+set number
+set nowrap
+set rnu
+set clipboard=unnamed
+set autowrite
+set showcmd
+set termguicolors
+set shell=cmd.exe
+set autoread
+set updatetime=50
+syntax on
