@@ -9,4 +9,9 @@ set termguicolors
 set shell=cmd.exe
 set autoread
 set updatetime=50
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set ignorecase
+set smartcase
 syntax on

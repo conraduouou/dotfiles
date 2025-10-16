@@ -7,5 +7,6 @@ call plug#begin()
   Plug 'sbdchd/neoformat'
   Plug 'tpope/vim-commentary'
   Plug 'Yggdroot/indentLine'
+  Plug 'matze/vim-move'
 
 call plug#end()
