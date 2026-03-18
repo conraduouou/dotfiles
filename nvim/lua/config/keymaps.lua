@@ -8,8 +8,9 @@ local opts = { noremap = true, silent = true }
 vim.keymap.set("n", "<leader>h", ":nohlsearch<CR>", opts)
 
 -- Alt+d / Alt+u → scroll and center
-vim.keymap.set("n", "<A-d>", "<C-d>", opts)
-vim.keymap.set("n", "<A-u>", "<C-u>", opts)
+vim.keymap.set("n", "<A-d>", "<C-d>zz", opts)
+vim.keymap.set("n", "<A-u>", "<C-u>zz", opts)
+vim.keymap.set("n", "G", "Gzz", opts)
 
 -- Alt+o / Alt+i → jump to previous and next
 vim.keymap.set("n", "<A-o>", "<C-o>", opts)
@@ -24,7 +25,9 @@ vim.keymap.set("n", "<A-l>", "<C-w>l", opts)
 -- remap lazyvim alt keymaps to ctrl
 vim.keymap.set("n", "<C-j>", "<cmd>execute 'move .+' . v:count1<cr>==", { desc = "Move Down" })
 vim.keymap.set("n", "<C-k>", "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==", { desc = "Move Up" })
+vim.keymap.del("i", "<A-j>")
 vim.keymap.set("i", "<C-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
+vim.keymap.del("i", "<A-k>")
 vim.keymap.set("i", "<C-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
 vim.keymap.set("v", "<C-j>", ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = "Move Down" })
 vim.keymap.set("v", "<C-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "Move Up" })

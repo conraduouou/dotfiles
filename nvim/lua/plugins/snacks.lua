@@ -1,6 +1,8 @@
 return {
   "folke/snacks.nvim",
   opts = function(_, opts)
+    opts.scroll = { enabled = false }
+
     opts.picker = opts.picker or {}
 
     -- configure the picker keymaps
