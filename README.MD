@@ -7,6 +7,8 @@ A few answers to common issues when using this dotfile configuration:
 - The `nvim` directory should be under '.config' in your home directory on macOS. 
 - The `.tmux.conf` file should be found in your home directory.
 - The `_vimrc` file likewise should be renamed to `.vim` when used on macOS, both found in your home directory.
+- The `bin` directory should be found in your home directory, containing `vf.ps1` to run vifm using PowerShell.
+- The `.vifm` directory should be found in your home directory, containing the `vifmrc` for specific configuration.
 
 ## For Vim
 
