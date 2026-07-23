@@ -1,7 +1,12 @@
 
 # Introduction
 
-Remember to rename `vimfiles` to `.vim` for your Mac!
+A few answers to common issues when using this dotfile configuration:
+- When using vim on macOS, rename `vimfiles` to `.vim`
+- When using PowerShell, especially for Windows machines, put the `profile.ps1` file in your ~/Documents/PowerShell directory
+- The `nvim` directory should be under '.config' in your home directory on macOS. 
+- The `.tmux.conf` file should be found in your home directory.
+- The `_vimrc` file likewise should be renamed to `.vim` when used on macOS, both found in your home directory.
 
 ## For Vim
 
