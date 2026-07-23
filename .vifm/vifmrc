@@ -1,0 +1,3 @@
+command o :execute '!%f &'
+
+set ignorecase
