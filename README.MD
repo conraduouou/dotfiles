@@ -10,6 +10,15 @@ A few answers to common issues when using this dotfile configuration:
 - The `bin` directory should be found in your home directory, containing `vf.ps1` to run vifm using PowerShell.
 - The `.vifm` directory should be found in your home directory, containing the `vifmrc` for specific configuration.
 
+## Philosophy
+
+What I set out to do as an architecture for my dotfiles was a layer of concerns by intent. This of course is with help from AI, after
+struggling to memorize and make sense of all of my keymaps. I then resorted to have the following principles as my guide:
+- Modifier keys should be universal across keyboards, device-agnostic. That's why I opted to use alt/option instead of ctrl/cmd.
+- Navigation should be instant, hence all movement keymaps bypass prefixes or leader keys.
+- Tool features should function via leader keys, hence why there are namespace leaders in vim, and the customizable leader key for extensions and plugins.
+- Prefix is technically a leader?? But I like to call it prefix just so it's different for multiplexers LOL.
+
 ## For Vim
 
 The following must be installed for your dotfiles to work:
