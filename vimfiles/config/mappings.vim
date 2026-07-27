@@ -7,6 +7,8 @@ nnoremap <leader>h :nohlsearch<CR>
 " Alt scrolling
 nnoremap <A-d> <C-d>zz
 nnoremap <A-u> <C-u>zz
+nnoremap <A-e> <C-e>
+nnoremap <A-y> <C-y>
 
 nnoremap G Gzz
 
