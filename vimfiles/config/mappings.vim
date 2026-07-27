@@ -87,3 +87,19 @@ vnoremap <C-k> :<C-u>execute "'<,'>move '<-" . (v:count1 + 1)<CR>gv=gv
 
 nnoremap <leader>f :call FormatFile()<CR>
 nnoremap <leader>r :call RunFile()<CR>
+
+
+" ======================
+" Miscellaneous
+" ======================
+
+" increment
+nnoremap <M-a> <C-a>
+vnoremap <M-a> <C-a>
+
+" decrement
+nnoremap <M-x> <C-x>
+vnoremap <M-x> <C-x>
+
+" redo
+nnoremap <M-r> <C-r>
