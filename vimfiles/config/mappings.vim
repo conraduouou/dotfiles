@@ -6,9 +6,13 @@ nnoremap <leader>h :nohlsearch<CR>
 
 " Alt scrolling
 nnoremap <A-d> <C-d>zz
+vnoremap <A-d> <C-d>zz
 nnoremap <A-u> <C-u>zz
+vnoremap <A-u> <C-u>zz
 nnoremap <A-e> <C-e>
+vnoremap <A-e> <C-e>
 nnoremap <A-y> <C-y>
+vnoremap <A-y> <C-y>
 
 nnoremap G Gzz
 
@@ -94,12 +98,12 @@ nnoremap <leader>r :call RunFile()<CR>
 " ======================
 
 " increment
-nnoremap <M-a> <C-a>
-vnoremap <M-a> <C-a>
+nnoremap <A-a> <C-a>
+vnoremap <A-a> <C-a>
 
 " decrement
-nnoremap <M-x> <C-x>
-vnoremap <M-x> <C-x>
+nnoremap <A-x> <C-x>
+vnoremap <A-x> <C-x>
 
 " redo
-nnoremap <M-r> <C-r>
+nnoremap <A-r> <C-r>
