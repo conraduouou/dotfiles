@@ -1,4 +1,3 @@
-
 # Introduction
 
 A few answers to common issues when using this dotfile configuration:
@@ -30,27 +29,29 @@ coc.nvim depends on this
 ## Plugins
 
 These are things I consider essential for my dev experience:
-1. tmux (psmux for Windows)
+1. *tmux* (psmux for Windows)
 Because duh
-2. *bat*
+2. *fzf*
+This is basically ctrl P from VS Code and IT IS GOOD.
+3. *bat*
 Not as helpful as I thought it would be since I usually preview files with vim but it does the job at times.
-3. *eza*
+4. *eza*
 I usually traverse directories with vifm but this is handy for viewing things quickly.
-4. *fd*
+5. *fd*
 You need to be able to find stuff.
-5. *grep*
+6. *grep*
 You need to be able to find stuff in files.
-6. *ripgrep*
+7. *ripgrep*
 You need to be able to find stuff in files better.
-7. *less*
+8. *less*
 Less is better than more.
-8. *vifm*
+9. *vifm*
 What better way to traverse directories than by what you already know? Vim rules bro.
-9. *vim*
+10. *vim*
 The ultimate barebones text editor to be IDE.
-10. *zoxide*
+11. *zoxide*
 The jump to anywhere is just truly magnificent.
-11. *git*
+12. *git*
 Mainly because I want it to be ready immediately, which chocolatey helps a lot in.
-12. *Nodejs*
+13. *Nodejs*
 The above reason.
