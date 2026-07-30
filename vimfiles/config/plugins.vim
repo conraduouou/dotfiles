@@ -8,5 +8,8 @@ call plug#begin()
   Plug 'tpope/vim-commentary'
   Plug 'Yggdroot/indentLine'
   Plug 'matze/vim-move'
+  Plug 'junegunn/fzf'
+  Plug 'junegunn/fzf.vim'
+  Plug 'tpope/vim-fugitive'
 
 call plug#end()
