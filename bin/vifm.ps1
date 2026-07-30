@@ -1,7 +1,7 @@
 # ~/bin/vf.ps1
 
 # Path to vifm
-$vifmExe = "C:\ProgramData\chocolatey\bin\vifm.exe"
+$vifmExe = (Get-Command vifm.exe).Source
 
 # Run vifm and capture the chosen directory
 $dir = & $vifmExe --choose-dir - @args
