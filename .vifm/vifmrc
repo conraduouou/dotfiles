@@ -1,3 +1,8 @@
 command o :execute '!%f &'
 
 set ignorecase
+set nohlsearch
+
+" Scroll half-page
+nnoremap <M-d> <C-d>
+nnoremap <M-u> <C-u>
