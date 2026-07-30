@@ -13,10 +13,12 @@ A few answers to common issues when using this dotfile configuration:
 
 What I set out to do as an architecture for my dotfiles was a layer of concerns by intent. This of course is with help from AI, after
 struggling to memorize and make sense of all of my keymaps. I then resorted to have the following principles as my guide:
-- Modifier keys should be universal across keyboards, device-agnostic. That's why I opted to use alt/option instead of ctrl/cmd.
-- Navigation should be instant, hence all movement keymaps bypass prefixes or leader keys.
-- Tool features should function via leader keys, hence why there are namespace leaders in vim, and the customizable leader key for extensions and plugins.
-- Prefix is technically a leader?? But I like to call it prefix just so it's different for multiplexers LOL.
+- Modifier keys should be *universal* across keyboards, device-agnostic. That's why I opted to use alt/option instead of ctrl/cmd.
+- I separate binds, remaps, and shortcuts logically by `navigation`, `tool`, and `prefix`.
+- `Navigation` should be instant, hence all movement keymaps bypass prefixes or leader keys.
+- `Tool`s should function via leader keys, hence why there are namespace leaders in vim, and the customizable leader key namespace for extensions and plugins.
+- `Prefix` is technically a leader, but set aside for terminal multiplexers and special tools.
+- I guess what sets apart `tool` and `prefix` namespaces are their layers; `tool` commands via the leader key namespace (space and a logical letter symbol for me) in the *editor*, and `prefix` via Alt-b for the multiplexer.
 
 ## For Vim
 
