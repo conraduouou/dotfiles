@@ -92,6 +92,43 @@ vnoremap <C-k> :<C-u>execute "'<,'>move '<-" . (v:count1 + 1)<CR>gv=gv
 nnoremap <leader>f :call FormatFile()<CR>
 nnoremap <leader>r :call RunFile()<CR>
 
+" For fzf
+nnoremap <C-p> :Files<CR>
+
+nnoremap <leader>ff :Files<CR>
+nnoremap <leader>fb :Buffers<CR>
+nnoremap <leader>fr :Rg<Space>
+nnoremap <leader>fh :History<CR>
+
+nnoremap <leader>fl :BLines<CR>
+nnoremap <leader>fL :Lines<CR>
+
+nnoremap <leader>ft :Tags<CR>
+nnoremap <leader>fT :BTags<CR>
+
+nnoremap <leader>mm :Maps<CR>
+nnoremap <leader>mk :Marks<CR>
+
+nnoremap <leader>cc :Commands<CR>
+
+nnoremap <leader>: :History:<CR>
+
+" For fugitive
+nnoremap <leader>gs :Git<CR>
+nnoremap <leader>gd :Gdiffsplit<CR>
+nnoremap <leader>gb :Git blame<CR>
+nnoremap <leader>gl :Git log<CR>
+
+nnoremap <leader>ga :Git add %<CR>
+nnoremap <leader>gA :Git add .<CR>
+
+nnoremap <leader>gc :Git commit<CR>
+
+nnoremap <leader>gp :Git push<CR>
+nnoremap <leader>gP :Git pull<CR>
+
+nnoremap <leader>ge :Gedit<CR>
+
 
 " ======================
 " Miscellaneous
