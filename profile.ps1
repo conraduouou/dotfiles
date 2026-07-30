@@ -1,15 +1,15 @@
 # Put this under your ~/Documents/PowerShell directory
-
 Invoke-Expression (& { (zoxide init powershell | Out-String) } )
 
 $Env:Path = "$HOME\bin;" + $Env:Path
 
-function vifm {
-    & "$HOME\bin\vf.ps1" @args
-}
+# Edit files with fd and fzf
+function ef {
+    param(
+        [string]$Path = "."
+    )
 
-function ff {
-    $files = @(fd)
+    $files = @(fd . $Path)
 
     $file = $files | fzf
 
@@ -18,13 +18,33 @@ function ff {
     }
 }
 
+# Open files with fd and fzf
 function of {
-    $files = @(fd)
+    param(
+        [string]$Path = "."
+    )
+
+    $files = @(fd . $Path)
 
     $file = $files | fzf
 
     if ($file) {
         . $file
+    }
+}
+
+# Change directory with fd and fzf
+function cf {
+    param(
+        [string]$Path = "."
+    )
+
+    $dirs = @(fd -t d . $Path)
+
+    $dir = $dirs | fzf
+
+    if ($dir) {
+        cd $dir
     }
 }
 
@@ -44,3 +64,4 @@ Set-PSReadLineKeyHandler -Chord Alt+k -Function PreviousHistory
 
 # For fzf controls and options
 # $env:FZF_DEFAULT_OPTS = '--bind=alt-j:down --bind=alt-k:up --preview="cmd /c bat --color=always --style=numbers {}" --preview-window=right:60%'
+$env:FZF_DEFAULT_OPTS = '--bind=alt-j:down --bind=alt-k:up'
