@@ -5,12 +5,12 @@ set rnu
 set clipboard=unnamed
 set autowrite
 set showcmd
-set termguicolors
 set shell=cmd.exe
 set autoread
 set updatetime=50
 set tabstop=4
 set shiftwidth=4
+set softtabstop=1
 set expandtab
 set ignorecase
 set smartcase
