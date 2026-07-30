@@ -1,4 +1,3 @@
-# Put this under your ~/Documents/PowerShell directory
 Invoke-Expression (& { (zoxide init powershell | Out-String) } )
 
 $Env:Path = "$HOME\bin;" + $Env:Path
@@ -9,7 +8,7 @@ function ef {
         [string]$Path = "."
     )
 
-    $files = @(fd . $Path)
+    $files = @(fd -t f . $Path)
 
     $file = $files | fzf
 
