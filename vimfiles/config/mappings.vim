@@ -35,16 +35,6 @@ nnoremap K :call CocActionAsync('doHover')<CR>
 
 
 " ======================
-" Diagnostics (CoC)
-" ======================
-
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-nmap <leader>d :CocList diagnostics<CR>
-nmap <leader>e :CocCommand diagnostics.showLineDiagnostics<CR>
-
-
-" ======================
 " Visual mode
 " ======================
 
@@ -86,11 +76,8 @@ vnoremap <C-k> :<C-u>execute "'<,'>move '<-" . (v:count1 + 1)<CR>gv=gv
 
 
 " ======================
-" Leader mappings (for functions)
+" Leader mappings (namespaces)
 " ======================
-
-nnoremap <leader>f :call FormatFile()<CR>
-nnoremap <leader>r :call RunFile()<CR>
 
 " For fzf
 nnoremap <C-p> :Files<CR>
@@ -128,6 +115,12 @@ nnoremap <leader>gp :Git push<CR>
 nnoremap <leader>gP :Git pull<CR>
 
 nnoremap <leader>ge :Gedit<CR>
+
+" For diagnostics (CoC at this time)
+nnoremap <leader>dp <Plug>(coc-diagnostic-prev)
+nnoremap <leader>dn <Plug>(coc-diagnostic-next)
+nnoremap <leader>dl :CocList diagnostics<CR>
+nnoremap <leader>dh :CocCommand diagnostics.showLineDiagnostics<CR>
 
 
 " ======================
