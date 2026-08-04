@@ -1,4 +1,8 @@
-command o :execute '!%f &'
+" For Windows
+" command o :execute '!powershell -NoProfile Start-Process "%f"'
+
+" For macOS
+command! o !open %c
 
 set ignorecase
 set nohlsearch
