@@ -1,7 +1,9 @@
 " ======================
 " Plugins
 " ======================
-call plug#begin()
+
+" Remove function argument on Windows
+call plug#begin(expand('~/.config/vim/plugged'))
 
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'sbdchd/neoformat'

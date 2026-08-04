@@ -2,30 +2,30 @@
 
 # Edit files with fd + fzf
 ef() {
-    local path="${1:-.}"
+    local search_dir="${1:-.}"
 
     local file
-    file=$(fd -t f . "$path" | fzf)
+    file=$(fd -t f . "$search_dir" | fzf)
 
-    [[ -n "$file" ]] && vim "$file"
+    [[ -n "$file" ]] && nvim "$file"
 }
 
 # Open files with fd + fzf
 of() {
-    local path="${1:-.}"
+    local search_dir="${1:-.}"
 
     local file
-    file=$(fd . "$path" | fzf)
+    file=$(fd . "$search_dir" | fzf)
 
     [[ -n "$file" ]] && open "$file"
 }
 
 # Change directory with fd + fzf
 cf() {
-    local path="${1:-.}"
+    local search_dir="${1:-.}"
 
     local dir
-    dir=$(fd -t d . "$path" | fzf)
+    dir=$(fd -t d . "$search_dir" | fzf)
 
     [[ -n "$dir" ]] && cd "$dir"
 }
