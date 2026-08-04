@@ -1,0 +1,33 @@
+[alias]
+	adog = log --all --decorate --oneline --graph
+	s = status
+
+[core]
+	pager = delta
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+	navigate = true
+	line-numbers = true
+	side-by-side = true
+
+[diff]
+	tool = vimdiff
+
+[difftool]
+	prompt = false
+
+[difftool "vimdiff"]
+	cmd = nvim -d "$LOCAL" "$REMOTE" # change to vim on Windows
+
+[merge]
+	tool = vimdiff
+
+[mergetool]
+	prompt = false
+
+[mergetool "vimdiff"]
+	cmd = nvim -d "$LOCAL" "$BASE" "$REMOTE" -c 'wincmd J | wincmd =' # change to vim on windows
+

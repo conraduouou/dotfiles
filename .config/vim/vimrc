@@ -1,0 +1,16 @@
+" ======================
+"  Master Config
+" ======================
+let mapleader = " "
+let maplocalleader = " "
+
+" Find the first path in runtimepath (which is always the active vim folder)
+let g:vim_base_dir = split(&runtimepath, ',')[0]
+
+" Scan and loop through the config subfolder relative to the active folder
+for file in split(globpath(g:vim_base_dir . '/config', '*.vim'), '\n')
+  execute 'source' file
+endfor
+
+" For vim-move to use ctrl instead of alt
+let g:move_key_modifier = 'C'

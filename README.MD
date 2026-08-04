@@ -1,13 +1,19 @@
 # Introduction
 
 A few answers to common issues when using this dotfile configuration:
-- When using vim on macOS, rename `vimfiles` to `.vim`
-- When using PowerShell, especially for Windows machines, put the `profile.ps1` file in your ~/Documents/PowerShell directory
-- The `nvim` directory should be under '.config' in your home directory on macOS. 
 - The `.tmux.conf` file should be found in your home directory.
-- The `_vimrc` file likewise should be renamed to `.vim` when used on macOS, both found in your home directory.
-- The `bin` directory should be found in your home directory, containing `vf.ps1` to run vifm using PowerShell.
-- The `.vifm` directory should be found in your home directory, containing the `vifmrc` for specific configuration.
+- The `.config/git/config` file uses `nvim` as the diff and merge tool by default. Change this to `vim` when on Windows.
+
+***For Windows***
+- Rename `.config/vim` to `vimfiles` (take it out of the `.config` directory) and put it in your home directory.
+- Put `.config/vifm` in your home directory.
+- Put the `profile.ps1` file in your ~/Documents/PowerShell directory
+- The `vimrc` file is located by default in `.config/vim`. Rename it to `_vimrc` and put it in your home directory.
+- The `bin` directory should be found in your home directory, containing `vifm.ps1` to run vifm using PowerShell.
+
+***For macOS***
+- Put the `.config` directory in your home directory.
+- Put the `.zprofile`, `.zshenv`, `.zshrc` files in your home directory
 
 ## Philosophy
 
