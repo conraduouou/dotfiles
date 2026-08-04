@@ -60,7 +60,3 @@ Set-PSReadLineOption -PredictionViewStyle ListView
 # For PSReadLine controls
 Set-PSReadLineKeyHandler -Chord Alt+j -Function NextHistory
 Set-PSReadLineKeyHandler -Chord Alt+k -Function PreviousHistory
-
-# For fzf controls and options
-# $env:FZF_DEFAULT_OPTS = '--bind=alt-j:down --bind=alt-k:up --preview="cmd /c bat --color=always --style=numbers {}" --preview-window=right:60%'
-$env:FZF_DEFAULT_OPTS = '--bind=alt-j:down --bind=alt-k:up'
