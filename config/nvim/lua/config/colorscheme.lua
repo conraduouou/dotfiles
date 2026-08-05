@@ -2,4 +2,8 @@
 -- Color scheme
 -- ======================
 
-vim.cmd.colorscheme("oxocarbon")
+-- Determine OS
+if vim.fn.has("win32") == 0 then
+    vim.cmd.colorscheme("oxocarbon")
+end
+

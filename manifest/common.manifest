@@ -1,4 +1,2 @@
 tmux.conf     |     .tmux.conf
 config/git    |     .config/git
-config/nvim   |     .config/nvim
-config/vifm   |     .config/vifm

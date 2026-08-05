@@ -1,4 +1,6 @@
 config/vim            |     vimfiles
+config/nvim           |     AppData/Local/nvim
+config/vifm           |     AppData/Roaming/vifm
 config/powershell     |     .config/powershell
 profile.ps1           |     Documents/PowerShell/profile.ps1
 bin/open-file.ps1     |     .local/bin/open-file.ps1

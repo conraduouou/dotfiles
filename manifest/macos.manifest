@@ -1,5 +1,7 @@
 config/vim     |     .config/vim
 config/zsh     |     .config/zsh
+config/nvim    |     .config/nvim
+config/vifm    |     .config/vifm
 
 zshrc          |     .zshrc
 zshenv         |     .zshenv
