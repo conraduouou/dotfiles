@@ -9,6 +9,9 @@ lazy-lock.json
 *.swo
 *~
 
+# Vifm data
+vifminfo.json
+
 # Editor folders
 .vscode/
 .idea/
