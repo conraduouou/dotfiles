@@ -17,6 +17,6 @@ Plug 'matze/vim-move'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
-Plug 'christoomey/vim-tmux-navigator'
+Plug 'conraduouou/vim-tmux-navigator'
 
 call plug#end()
