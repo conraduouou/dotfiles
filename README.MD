@@ -9,7 +9,15 @@ And yes, Chocolateyfile is not standard. It's just to mirror the macOS installat
 
 If instead you like to be manual, the following are steps where each component should be located.
 
-# Manual
+## MUST KNOW!
+
+The `vifm` plugin from Chocolatey is currently `v0.11` at time of writing. It must be at least `v0.14` to be able to use highlight groups. To deal with this, install
+the `vifm` binaries and put it in your home directory under `Tools/vifm`
+
+There is also an issue with `vim-navigator-tmux` with its usage of `shellcmdflag`, which I have raised a PR for. Until the time it gets addressed, install my fork instead of the
+original's to make `vim` work with `psmux`.
+
+## Manual
 
 ***Common***
 - The `tmux.conf`, renamed to `.tmux.conf`, should be found in your home directory.

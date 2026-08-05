@@ -4,13 +4,16 @@
 # Neovim
 lazy-lock.json
 
-# Vim swap/backup
+# Vim 
 *.swp
 *.swo
 *~
+config/vim/plugged
+
 
 # Vifm data
-vifminfo.json
+config/vifm/*
+!config/vifm/vifmrc
 
 # Editor folders
 .vscode/
