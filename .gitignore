@@ -1,0 +1,17 @@
+# macOS
+.DS_Store
+
+# Neovim
+lazy-lock.json
+
+# Vim swap/backup
+*.swp
+*.swo
+*~
+
+# Editor folders
+.vscode/
+.idea/
+
+# Backup files created by installer (optional)
+*.backup-*

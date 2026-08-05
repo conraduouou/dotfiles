@@ -1,0 +1,8 @@
+config/vim     |     .config/vim
+config/zsh     |     .config/zsh
+
+zshrc          |     .zshrc
+zshenv         |     .zshenv
+zprofile       |     .zprofile
+
+bin/open-file  |     .local/bin/open-file

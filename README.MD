@@ -1,19 +1,31 @@
-# Introduction
+# Installation
 
-A few answers to common issues when using this dotfile configuration:
-- The `.tmux.conf` file should be found in your home directory.
-- The `.config/git/config` file uses `nvim` as the diff and merge tool by default. Change this to `vim` when on Windows.
+Scripts have been created for cross-platform support! Mainly `install.sh` for macOS and `install.ps1` for Windows!
+
+They also have their own uninstallers if ever you want to start from scratch. Note that they do **not** uninstall packages installed from either
+Homebrew or Chocolatey.
+
+And yes, Chocolateyfile is not standard. It's just to mirror the macOS installation.
+
+If instead you like to be manual, the following are steps where each component should be located.
+
+# Manual
+
+***Common***
+- The `tmux.conf`, renamed to `.tmux.conf`, should be found in your home directory.
+- The `config/git/config` file uses `nvim` as the diff and merge tool by default.
+- The `bin` directory should be put under your home directory inside `local`.
 
 ***For Windows***
-- Rename `.config/vim` to `vimfiles` (take it out of the `.config` directory) and put it in your home directory.
-- Put `.config/vifm` in your home directory.
+- Rename `config/vim` to `vimfiles` (take it out of the `config` directory) and put it in your home directory.
+- Put `config/vifm` in your home directory's `.config`.
+- Put `config/powershell` in your home directory's `.config`.
 - Put the `profile.ps1` file in your ~/Documents/PowerShell directory
-- The `vimrc` file is located by default in `.config/vim`. Rename it to `_vimrc` and put it in your home directory.
-- The `bin` directory should be found in your home directory, containing `vifm.ps1` to run vifm using PowerShell.
+- The `vimrc` file is located by default in `config/vim`. Rename it to `_vimrc` and put it in your home directory.
 
 ***For macOS***
-- Put the `.config` directory in your home directory.
-- Put the `.zprofile`, `.zshenv`, `.zshrc` files in your home directory
+- Put the `config` directory in your home directory.
+- Put the `zprofile`, `zshenv`, `zshrc` files in your home directory, all prefixed by `.`
 
 ## Philosophy
 

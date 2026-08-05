@@ -5,7 +5,14 @@ set rnu
 set clipboard=unnamed
 set autowrite
 set showcmd
-set shell=cmd.exe
+
+" Determine OS
+if has('win32') || has('win64')
+    set shell=cmd.exe
+else
+    set shell=zsh
+endif
+
 set autoread
 set updatetime=50
 set tabstop=4

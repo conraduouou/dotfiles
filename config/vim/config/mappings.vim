@@ -21,10 +21,10 @@ nnoremap <A-o> <C-o>
 nnoremap <A-i> <C-i>
 
 "Window navigation
-nnoremap <A-h> <C-w>h
-nnoremap <A-j> <C-w>j
-nnoremap <A-k> <C-w>k
-nnoremap <A-l> <C-w>l
+nnoremap <A-h> :<C-U>TmuxNavigateLeft<cr>
+nnoremap <A-j> :<C-U>TmuxNavigateDown<cr>
+nnoremap <A-k> :<C-U>TmuxNavigateUp<cr>
+nnoremap <A-l> :<C-U>TmuxNavigateRight<cr>
 
 " CoC navigation
 nmap <silent> gd <Plug>(coc-definition)
