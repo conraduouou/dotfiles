@@ -77,9 +77,11 @@ Less is better than more.
 What better way to traverse directories than by what you already know? Vim rules bro.
 10. *vim*
 The ultimate barebones text editor to be IDE.
-11. *zoxide*
+11. *neovim*
+A fork of the ultimate barebones text editor to be IDE--and it does a great heck of a job at it.
+12. *zoxide*
 The jump to anywhere is just truly magnificent.
-12. *git*
+13. *git*
 Mainly because I want it to be ready immediately, which chocolatey helps a lot in.
-13. *Nodejs*
+14. *Nodejs*
 The above reason.
