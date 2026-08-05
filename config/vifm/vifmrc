@@ -1,8 +1,8 @@
-" For Windows
-" command o :execute '!powershell -NoProfile Start-Process "%f"'
+" Use helper script
+command! o !open-file %c
 
-" For macOS
-command! o !open %c
+" Use nvim
+set vicmd=nvim
 
 set ignorecase
 set nohlsearch
@@ -10,3 +10,49 @@ set nohlsearch
 " Scroll half-page
 nnoremap <M-d> <C-d>
 nnoremap <M-u> <C-u>
+
+" ==========================================
+" Oxocarbon for Vifm
+" ==========================================
+
+" Normal text
+highlight Win        cterm=none ctermfg=252 ctermbg=234 guifg=#f2f2f2 guibg=#161616
+
+" Current line
+highlight CurrLine   cterm=bold ctermfg=255 ctermbg=236 gui=bold guifg=#ffffff guibg=#2a2a2a
+
+" Selected files
+highlight Selected   cterm=bold ctermfg=153 ctermbg=236 gui=bold guifg=#78a9ff guibg=#2a2a2a
+
+" Directory
+highlight Directory  cterm=none ctermfg=111 guifg=#78a9ff
+
+" Executable
+highlight Executable cterm=bold ctermfg=78 gui=bold guifg=#42be65
+
+" Symlink
+highlight Link       cterm=none ctermfg=80 guifg=#3ddbd9
+
+" Broken symlink
+highlight BrokenLink cterm=bold ctermfg=204 gui=bold guifg=#ee5396
+
+" Device files
+highlight Device     cterm=bold ctermfg=147 gui=bold guifg=#be95ff
+
+" Socket / FIFO
+highlight Socket     cterm=none ctermfg=116 guifg=#82cfff
+
+" Borders
+highlight Border     cterm=none ctermfg=240 guifg=#5e5e5e
+
+" Status line
+highlight StatusLine cterm=bold ctermfg=255 ctermbg=236 gui=bold guifg=#ffffff guibg=#2a2a2a
+
+" Wildmenu / completion
+highlight WildMenu   cterm=bold ctermfg=234 ctermbg=111 gui=bold guifg=#161616 guibg=#78a9ff
+
+" Error messages
+highlight ErrorMsg   cterm=bold ctermfg=204 guifg=#ee5396
+
+" Command line
+highlight CmdLine    cterm=none ctermfg=252 guifg=#f2f2f2

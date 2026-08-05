@@ -18,12 +18,6 @@ map("n", "G", "Gzz")
 map("n", "<A-o>", "<C-o>")
 map("n", "<A-i>", "<C-i>")
 
--- Window navigation
-map("n", "<A-h>", "<C-w>h")
-map("n", "<A-j>", "<C-w>j")
-map("n", "<A-k>", "<C-w>k")
-map("n", "<A-l>", "<C-w>l")
-
 -- CoC navigation
 map("n", "gd", "<Plug>(coc-definition)", { silent = true })
 map("n", "gy", "<Plug>(coc-type-definition)", { silent = true })
@@ -80,25 +74,27 @@ map("v", "<C-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<CR>gv=gv")
 -- FZF
 -- ======================
 
-map("n", "<C-p>", "<Cmd>Files<CR>")
+local fzf = require("fzf-lua")
 
-map("n", "<leader>ff", "<Cmd>Files<CR>")
-map("n", "<leader>fb", "<Cmd>Buffers<CR>")
-map("n", "<leader>fr", "<Cmd>Rg ")
-map("n", "<leader>fh", "<Cmd>History<CR>")
+map("n", "<C-p>", fzf.files)
 
-map("n", "<leader>fl", "<Cmd>BLines<CR>")
-map("n", "<leader>fL", "<Cmd>Lines<CR>")
+map("n", "<leader>ff", fzf.files)
+map("n", "<leader>fb", fzf.buffers)
+map("n", "<leader>fr", fzf.live_grep)
+map("n", "<leader>fh", fzf.oldfiles)
 
-map("n", "<leader>ft", "<Cmd>Tags<CR>")
-map("n", "<leader>fT", "<Cmd>BTags<CR>")
+map("n", "<leader>fl", fzf.blines)
+map("n", "<leader>fL", fzf.lines)
 
-map("n", "<leader>mm", "<Cmd>Maps<CR>")
-map("n", "<leader>mk", "<Cmd>Marks<CR>")
+map("n", "<leader>ft", fzf.tags)
+map("n", "<leader>fT", fzf.btags)
 
-map("n", "<leader>cc", "<Cmd>Commands<CR>")
+map("n", "<leader>mm", fzf.keymaps)
+map("n", "<leader>mk", fzf.marks)
 
-map("n", "<leader>:", "<Cmd>History:<CR>")
+map("n", "<leader>cc", fzf.commands)
+
+map("n", "<leader>:", fzf.command_history)
 
 -- ======================
 -- Fugitive
