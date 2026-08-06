@@ -11,7 +11,7 @@ function ef {
     $file = $files | fzf
 
     if ($file) {
-        vim $file
+        nvim $file
     }
 }
 
