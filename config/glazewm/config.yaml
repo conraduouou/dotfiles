@@ -181,6 +181,30 @@ binding_modes:
       # Press enter/escape to return to default keybindings.
       - commands: ['wm-disable-binding-mode --name resize']
         bindings: ['escape', 'enter']
+  - name: 'launch'
+    keybindings:
+      - commands:
+          - 'shell-exec --hide-window pwsh -Command "Start-Process wt -Verb RunAs"'
+          - 'wm-disable-binding-mode --name launch'
+        bindings: ['1']
+      - commands:
+          - 'shell-exec ms-teams'
+          - 'wm-disable-binding-mode --name launch'
+        bindings: ['2']
+      - commands:
+          - 'shell-exec explorer'
+          - 'wm-disable-binding-mode --name launch'
+        bindings: ['3']
+      - commands:
+          - 'shell-exec msedge --profile-directory="Default" edge://newtab'
+          - 'wm-disable-binding-mode --name launch'
+        bindings: ['4']
+      - commands:
+          - 'shell-exec msedge --profile-directory="Profile 1" edge://newtab'
+          - 'wm-disable-binding-mode --name launch'
+        bindings: ['shift+4']
+      - commands: ['wm-disable-binding-mode --name launch']
+        bindings: ['escape', 'enter']
 
 keybindings:
   # Shift focus in a given direction.
@@ -218,6 +242,9 @@ keybindings:
   # the name 'resize'.
   - commands: ['wm-enable-binding-mode --name resize']
     bindings: ['alt+r']
+
+  - commands: ['wm-enable-binding-mode --name launch']
+    bindings: ['alt+enter']
 
   # Disables window management and all other keybindings until alt+shift+p
   # is pressed again.
@@ -268,8 +295,8 @@ keybindings:
   # Launch CMD terminal. Alternatively, use `shell-exec wt` or
   # `shell-exec %ProgramFiles%/Git/git-bash.exe` to start Windows
   # Terminal and Git Bash respectively.
-  - commands: ['shell-exec cmd']
-    bindings: ['alt+enter']
+  # - commands: ['shell-exec cmd']
+  #   bindings: ['alt+enter']
 
   # Focus the next/previous active workspace defined in `workspaces` config.
   - commands: ['focus --next-active-workspace']
