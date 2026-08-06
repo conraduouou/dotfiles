@@ -5,26 +5,26 @@
 nnoremap <leader>h :nohlsearch<CR>
 
 " Alt scrolling
-nnoremap <A-d> <C-d>zz
-vnoremap <A-d> <C-d>zz
-nnoremap <A-u> <C-u>zz
-vnoremap <A-u> <C-u>zz
-nnoremap <A-e> <C-e>
-vnoremap <A-e> <C-e>
-nnoremap <A-y> <C-y>
-vnoremap <A-y> <C-y>
+nnoremap <C-d> <C-d>zz
+vnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+vnoremap <C-u> <C-u>zz
+" nnoremap <C-e> <C-e>
+" vnoremap <C-e> <C-e>
+" nnoremap <C-y> <C-y>
+" vnoremap <C-y> <C-y>
 
 nnoremap G Gzz
 
 " Jump list
-nnoremap <A-o> <C-o>
-nnoremap <A-i> <C-i>
+" nnoremap <A-o> <C-o>
+" nnoremap <A-i> <C-i>
 
 "Window navigation
-nnoremap <A-h> :<C-U>TmuxNavigateLeft<cr>
-nnoremap <A-j> :<C-U>TmuxNavigateDown<cr>
-nnoremap <A-k> :<C-U>TmuxNavigateUp<cr>
-nnoremap <A-l> :<C-U>TmuxNavigateRight<cr>
+nnoremap <C-h> :<C-U>TmuxNavigateLeft<cr>
+nnoremap <C-j> :<C-U>TmuxNavigateDown<cr>
+nnoremap <C-k> :<C-U>TmuxNavigateUp<cr>
+nnoremap <C-l> :<C-U>TmuxNavigateRight<cr>
 
 " CoC navigation
 nmap <silent> gd <Plug>(coc-definition)
@@ -65,14 +65,14 @@ snoremap jk <Esc>
 " Move lines (moved from Alt to Ctrl)
 " ======================
 
-nnoremap <C-k> :<C-u>execute 'move .-' . (v:count1 + 1)<CR>==
-nnoremap <C-j> :<C-u>execute 'move .+' . v:count1<CR>==
+" nnoremap <C-k> :<C-u>execute 'move .-' . (v:count1 + 1)<CR>==
+" nnoremap <C-j> :<C-u>execute 'move .+' . v:count1<CR>==
 
-inoremap <C-j> <Esc><Cmd>m .+1<CR>==gi
-inoremap <C-k> <Esc><Cmd>m .-2<CR>==gi
+" inoremap <C-j> <Esc><Cmd>m .+1<CR>==gi
+" inoremap <C-k> <Esc><Cmd>m .-2<CR>==gi
 
-vnoremap <C-j> :<C-u>execute "'<,'>move '>+" . v:count1<CR>gv=gv
-vnoremap <C-k> :<C-u>execute "'<,'>move '<-" . (v:count1 + 1)<CR>gv=gv
+" vnoremap <C-j> :<C-u>execute "'<,'>move '>+" . v:count1<CR>gv=gv
+" vnoremap <C-k> :<C-u>execute "'<,'>move '<-" . (v:count1 + 1)<CR>gv=gv
 
 
 " ======================
@@ -128,12 +128,12 @@ nnoremap <leader>dh :CocCommand diagnostics.showLineDiagnostics<CR>
 " ======================
 
 " increment
-nnoremap <A-a> <C-a>
-vnoremap <A-a> <C-a>
+" nnoremap <A-a> <C-a>
+" vnoremap <A-a> <C-a>
 
 " decrement
-nnoremap <A-x> <C-x>
-vnoremap <A-x> <C-x>
+" nnoremap <A-x> <C-x>
+" vnoremap <A-x> <C-x>
 
 " redo
-nnoremap <A-r> <C-r>
+" nnoremap <A-r> <C-r>

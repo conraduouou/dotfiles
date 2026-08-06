@@ -13,4 +13,4 @@ for file in split(globpath(g:vim_base_dir . '/config', '*.vim'), '\n')
 endfor
 
 " For vim-move to use ctrl instead of alt
-let g:move_key_modifier = 'C'
+" let g:move_key_modifier = 'C'

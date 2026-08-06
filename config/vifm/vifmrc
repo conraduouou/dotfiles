@@ -8,8 +8,8 @@ set ignorecase
 set nohlsearch
 
 " Scroll half-page
-nnoremap <M-d> <C-d>
-nnoremap <M-u> <C-u>
+" nnoremap <M-d> <C-d>
+" nnoremap <M-u> <C-u>
 
 " ==========================================
 " Oxocarbon for Vifm
