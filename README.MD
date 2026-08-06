@@ -9,6 +9,12 @@ And yes, Chocolateyfile is not standard. It's just to mirror the macOS installat
 
 If instead you like to be manual, the following are steps where each component should be located.
 
+## Maintaining vim
+
+Should the time come when nvim becomes staple across all devices and machines that I will ever use, then I will stop maintaining vim altogether. I started tracking my vim files
+because I thought Azure VMs wouldn't be able to support nvim, as well as Windows. Turns out nvim was available to Windows way, way, *waaaay* back, and that I should start reading
+documentations.
+
 ## MUST KNOW!
 
 The `vifm` plugin from Chocolatey is currently `v0.11` at time of writing. It must be at least `v0.14` to be able to use highlight groups. To deal with this, install
@@ -41,7 +47,7 @@ What I set out to do as an architecture for my dotfiles was a layer of concerns 
 struggling to memorize and make sense of all of my keymaps. I then resorted to have the following principles as my guide:
 - Modifier keys should be *universal* across keyboards, device-agnostic. That's why I opted to use alt/option instead of ctrl/cmd.
 - I separate binds, remaps, and shortcuts logically by `navigation`, `tool`, and `prefix`.
-- `Navigation` should be instant, hence all movement keymaps bypass prefixes or leader keys.
+- `Navigation` should be instant, hence all movement keymaps bypass prefixes or leader keys. This is also the reason why I spent time making sense of `vim-tmux-navigator`.
 - `Tool`s should function via leader keys, hence why there are namespace leaders in vim, and the customizable leader key namespace for extensions and plugins.
 - `Prefix` is technically a leader, but set aside for terminal multiplexers and special tools.
 - I guess what sets apart `tool` and `prefix` namespaces are their layers; `tool` commands via the leader key namespace (space and a logical letter symbol for me) in the *editor*, and `prefix` via Alt-b for the multiplexer.
@@ -50,7 +56,7 @@ struggling to memorize and make sense of all of my keymaps. I then resorted to h
 
 The following must be installed for your dotfiles to work:
 1. *vim-plug*
-For plugins
+For plugins. I have included the autoload/plug.vim file for this reason.
 2. *Nodejs*
 coc.nvim depends on this
 
