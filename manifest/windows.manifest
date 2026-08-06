@@ -1,6 +1,7 @@
-config/vim            |     vimfiles
-config/nvim           |     AppData/Local/nvim
-config/vifm           |     AppData/Roaming/vifm
-config/powershell     |     .config/powershell
-profile.ps1           |     Documents/PowerShell/profile.ps1
-bin/open-file.cmd     |     .local/bin/open-file.cmd
+config/vim                   |     vimfiles
+config/nvim                  |     AppData/Local/nvim
+config/vifm                  |     AppData/Roaming/vifm
+config/powershell            |     .config/powershell
+profile.ps1                  |     Documents/PowerShell/profile.ps1
+bin/open-file.cmd            |     .local/bin/open-file.cmd
+dual-key-remap/config.txt    |     Tools\dual-key-remap\config.txt
