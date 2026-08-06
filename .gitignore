@@ -10,6 +10,9 @@ lazy-lock.json
 *~
 config/vim/plugged
 
+# Glazewm/any logs
+*.log
+
 
 # Vifm data
 config/vifm/*

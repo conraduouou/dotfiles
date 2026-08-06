@@ -5,3 +5,4 @@ config/powershell            |     .config/powershell
 profile.ps1                  |     Documents/PowerShell/profile.ps1
 bin/open-file.cmd            |     .local/bin/open-file.cmd
 dual-key-remap/config.txt    |     Tools\dual-key-remap\config.txt
+config/glazewm               |     .glzr/glazewm
