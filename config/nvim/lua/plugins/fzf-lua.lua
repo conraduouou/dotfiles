@@ -7,6 +7,12 @@ return {
     ---@module "fzf-lua"
     ---@type fzf-lua.Config|{}
     ---@diagnostic disable: missing-fields
-    opts = {},
+    opts = {
+        fzf_colors = {
+            true,
+            ["hl"]  = { "fg", "Identifier" },
+            ["hl+"] = { "fg", "Statement", "bold" },
+        }
+    },
     ---@diagnostic enable: missing-fields
 }
