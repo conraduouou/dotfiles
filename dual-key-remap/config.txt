@@ -1,8 +1,14 @@
+# Remap Caps Lock to Windows... whattttt
 remap_key=CAPSLOCK
 when_alone=ESCAPE
-with_other=CTRL
+with_other=ESCAPE
 
 # Copilot key: release Win and Shift, send Ctrl on its own
 remap_key=F23-LEFT_WIN-LEFT_SHIFT
 when_alone=NOOP
+with_other=CTRL
+
+# Remap left ctrl, by this time Windows key, to Windows when tapped, ctrl when held!
+remap_key=LEFT_CTRL
+when_alone=WIN
 with_other=CTRL
