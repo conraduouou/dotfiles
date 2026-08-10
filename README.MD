@@ -44,10 +44,16 @@ then resorted to have the following principles as my guide:
 ## Device Plugins
 
 For ensuring ergonomic workflow, reducing strain on my left pinky for holding ctrl all day, I resorted
-to use `ililim/dual-key-remap` to remap my caps lock and Copilot keys to ctrl.
+to use `ililim/dual-key-remap` for remapping certain keys.
 
-I had initially resorted to mapping almost ctrl mapping in nvim and vim to alt. This was because kitty
-did not do well with command mappings, which I was expecting to be the default with mac nvim and vim.
+However, the Windows key had a particular combination that is OS-locked, which is `Win + L`, the locking
+command. To work around this, I had created a registry script `win-to-ctrl.reg` in the `dual-key-remap`
+directory, which translates it to left ctrl.
+
+This in turn makes me able to remap left ctrl to ctrl when held, and Windows when tapped.
+
+I had initially resorted to mapping almost all ctrl mappings in nvim and vim to alt. This was because kitty
+did not do well with macOS' command mappings, which I was expecting to be the default with mac nvim and vim.
 I have to live with only one control key on macOS though, which sucks when I get used to the ctrl b
 prefix that I could do with the Copilot key.
 

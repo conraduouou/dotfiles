@@ -1,14 +1,17 @@
 # macOS
 .DS_Store
 
+
 # Neovim
 lazy-lock.json
+
 
 # Vim 
 *.swp
 *.swo
 *~
 config/vim/plugged
+
 
 # Glazewm/any logs
 *.log
@@ -18,9 +21,11 @@ config/vim/plugged
 config/vifm/*
 !config/vifm/vifmrc
 
+
 # Editor folders
 .vscode/
 .idea/
+
 
 # Backup files created by installer (optional)
 *.backup-*
