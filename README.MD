@@ -1,4 +1,4 @@
-# Installation
+# Introduction
 
 Scripts have been created for cross-platform support! Mainly `install.sh` for macOS and `install.ps1`
 for Windows!
@@ -8,15 +8,7 @@ uninstall packages installed from either Homebrew or Chocolatey.
 
 And yes, Chocolateyfile is not standard. It's just to mirror the macOS installation.
 
-If instead you like to be manual, the following are steps where each component should be located.
-
-
-## Maintaining vim
-
-Should the time come when nvim becomes staple across all devices and machines that I will ever use,
-then I will stop maintaining vim altogether. I started tracking my vim files because I thought Azure
-VMs wouldn't be able to support nvim, as well as Windows. Turns out nvim was available to Windows
-way, way, *waaaay* back, and that I should start reading documentations.
+If instead you like to have control over the installation, there is a section for manual installation below.
 
 
 ## MUST KNOW!
@@ -28,26 +20,6 @@ home directory under `Tools/vifm`
 There is also an issue with `vim-navigator-tmux` with its usage of `shellcmdflag`, which I have
 raised a PR for. Until the time it gets addressed, install my fork instead of the original's to make
 `vim` work with `psmux`.
-
-
-## Manual Installation
-
-***Common***
-- The `tmux.conf`, renamed to `.tmux.conf`, should be found in your home directory.
-- Take out `git` from the `config` directory and put it in your home directory's `.config`.
-
-***For Windows***
-- Take out `vim` from the `config` directory and rename it to `vimfiles`. Then, put it in your home directory.
-- Take out `nvim` from the `config` directory and put it in `~\AppData\Local`.
-- Take out `vifm` from the `config` directory and put it in `~\AppData\Roaming`.
-- Take out `powershell` from the `config` directory and put it in your home directory's `.config`.
-- Put the `profile.ps1` file in your ~/Documents/PowerShell directory
-- Take out `open-file.cmd` from the `bin` directory and put it in your home directory's `.local\bin`.
-
-***For macOS***
-- Rename the `config` to `.config` directory in your home directory.
-- Put the `zprofile`, `zshenv`, `zshrc` files in your home directory, all prefixed by `.`
-- Take out `open-file` from the `bin` directory and put it in your home directory's `.local\bin`.
 
 
 ## Philosophy
@@ -67,6 +39,59 @@ then resorted to have the following principles as my guide:
 - I guess what sets apart `tool` and `prefix` namespaces are their layers; `tool` commands via the
   leader key namespace (space and a logical letter symbol for me) in the *editor*, and `prefix` via
   Alt-b for the multiplexer.
+
+
+## Device Plugins
+
+For ensuring ergonomic workflow, reducing strain on my left pinky for holding ctrl all day, I resorted
+to use `ililim/dual-key-remap` to remap my caps lock and Copilot keys to ctrl.
+
+I had initially resorted to mapping almost ctrl mapping in nvim and vim to alt. This was because kitty
+did not do well with command mappings, which I was expecting to be the default with mac nvim and vim.
+I have to live with only one control key on macOS though, which sucks when I get used to the ctrl b
+prefix that I could do with the Copilot key.
+
+I think reverting back to ctrl this way would make me conflict-free with tiling managers.
+
+***For Windows***
+1. `ililim/dual-key-remap`
+Does one job and does it well.
+2. `glzr-io/glazewm`
+A great free Windows tiling manager.
+
+***For macOS***
+1. `pqrs-org/Karabiner-Elements`
+Powerful. I only use it for remaps though :p
+
+
+## Maintaining vim
+
+Should the time come when nvim becomes staple across all devices and machines that I will ever use,
+then I will stop maintaining vim altogether. I started tracking my vim files because I thought Azure
+VMs wouldn't be able to support nvim, as well as Windows. Turns out nvim was available to Windows
+way, way, *waaaay* back, and that I should start reading documentations.
+
+
+## Manual Installation
+
+***Common***
+- The `tmux.conf`, renamed to `.tmux.conf`, should be found in your home directory.
+- Take out `git` from the `config` directory and put it in your home directory's `.config`.
+
+***For Windows***
+- Take out `vim` from the `config` directory and rename it to `vimfiles`. Then, put it in your home directory.
+- Take out `nvim` from the `config` directory and put it in `~\AppData\Local`.
+- Take out `vifm` from the `config` directory and put it in `~\AppData\Roaming`.
+- Take out `powershell` from the `config` directory and put it in your home directory's `.config`.
+- Put the `profile.ps1` file in your ~/Documents/PowerShell directory
+- Take out `open-file.cmd` from the `bin` directory and put it in your home directory's `.local\bin`.
+- Take out `config.txt` from the `dual-key-remap` directory and put it under `~\Tools\dual-key-remap`.
+- Take out `glazewm` from the `config` directory and put it in `~\.glzr`.
+
+***For macOS***
+- Rename the `config` to `.config` directory in your home directory.
+- Put the `zprofile`, `zshenv`, `zshrc` files in your home directory, all prefixed by `.`
+- Take out `open-file` from the `bin` directory and put it in your home directory's `.local\bin`.
 
 
 ## For Vim dotfiles
@@ -109,24 +134,3 @@ The jump to anywhere is just truly magnificent.
 Mainly because I want it to be ready immediately, which chocolatey helps a lot in.
 14. *Nodejs*
 The above reason.
-
-
-## Device Plugins
-
-For ensuring ergonomic workflow, reducing strain on my left pinky for holding ctrl all day, I resorted
-to use `ililim/dual-key-remap` to remap my caps lock and Copilot keys to ctrl.
-
-I had initially resorted to mapping almost ctrl mapping in nvim and vim to alt. This was because kitty
-did not do well with command mappings, which I was expecting to be the default with mac nvim and vim.
-I have to live with only one control key on macOS though, which sucks when I get used to the ctrl b
-prefix that I could do with the Copilot key.
-
-I think reverting back to ctrl this way would make me conflict-free with tiling managers.
-
-***For Windows***
-1. `ililim/dual-key-remap`
-Does one job and does it well.
-
-***For macOS***
-1. `pqrs-org/Karabiner-Elements`
-Powerful. I only use it for remaps though :p
