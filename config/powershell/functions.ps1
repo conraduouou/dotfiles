@@ -45,6 +45,11 @@ function cf {
     }
 }
 
+# Lock the session
+function lock {
+    rundll32.exe user32.dll,LockWorkStation
+}
+
 # Override default vifm
 function vifm {
     # Find vifm
