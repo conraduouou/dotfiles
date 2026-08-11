@@ -55,7 +55,7 @@ end, { expr = true })
 -- Escape remaps
 -- ======================
 
-map({ "i", "v", "x", "s" }, "jk", "<Esc>")
+map("i", "jk", "<Esc>")
 
 -- ======================
 -- Move lines
