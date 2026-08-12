@@ -6,17 +6,16 @@ local map = vim.keymap.set
 
 map("n", "<leader>h", "<Cmd>nohlsearch<CR>")
 
--- Alt scrolling
+-- Scrolling
 map({ "n", "v" }, "<C-d>", "<C-d>zz")
 map({ "n", "v" }, "<C-u>", "<C-u>zz")
--- map({ "n", "v" }, "<C-e>", "<C-e>")
--- map({ "n", "v" }, "<C-y>", "<C-y>")
 
+-- Buffer switching
+map("n", "<C-p>", "<cmd>bprev<cr>")
+map("n", "<C-n>", "<cmd>bnext<cr>")
+
+-- Center when going to bottom
 map("n", "G", "Gzz")
-
--- Jump list
--- map("n", "<A-o>", "<C-o>")
--- map("n", "<A-i>", "<C-i>")
 
 -- CoC navigation
 map("n", "gd", "<Plug>(coc-definition)", { silent = true })
@@ -76,8 +75,6 @@ map("i", "jk", "<Esc>")
 
 local fzf = require("fzf-lua")
 
-map("n", "<C-p>", fzf.files)
-
 map("n", "<leader>ff", fzf.files)
 map("n", "<leader>fb", fzf.buffers)
 map("n", "<leader>fr", fzf.live_grep)
@@ -123,11 +120,3 @@ map("n", "<leader>dp", "<Plug>(coc-diagnostic-prev)")
 map("n", "<leader>dn", "<Plug>(coc-diagnostic-next)")
 map("n", "<leader>dl", "<Cmd>CocList diagnostics<CR>")
 map("n", "<leader>dh", "<Cmd>CocCommand diagnostics.showLineDiagnostics<CR>")
-
--- ======================
--- Miscellaneous
--- ======================
-
--- map({ "n", "v" }, "<A-a>", "<C-a>")
--- map({ "n", "v" }, "<A-x>", "<C-x>")
--- map("n", "<A-r>", "<C-r>")

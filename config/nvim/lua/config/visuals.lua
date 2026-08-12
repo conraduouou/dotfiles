@@ -34,9 +34,6 @@ vim.opt.fillchars:append({
     foldsep = " ",
 })
 
--- Always show statusline
-vim.opt.laststatus = 2
-
 -- Smoother split appearance
 vim.opt.splitkeep = "screen"
 
@@ -56,3 +53,38 @@ vim.api.nvim_create_autocmd("TextYankPost", {
         })
     end,
 })
+
+
+-- ==========================================
+-- Statusline
+-- ==========================================
+
+_G.buffers = function()
+    local result = {}
+
+    for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+        if vim.api.nvim_buf_is_valid(bufnr)
+            and vim.api.nvim_buf_is_loaded(bufnr)
+            and vim.bo[bufnr].buflisted
+        then
+            local name = vim.fn.bufname(bufnr)
+
+            if name == "" then
+                name = "[No Name]"
+            else
+                name = vim.fn.fnamemodify(name, ":t")
+            end
+
+            if bufnr == vim.api.nvim_get_current_buf() then
+                table.insert(result, "[" .. name .. "]")
+            else
+                table.insert(result, name)
+            end
+        end
+    end
+
+    return table.concat(result, "  ")
+end
+
+vim.o.statusline = "%{v:lua.buffers()}%=%l:%c"
+

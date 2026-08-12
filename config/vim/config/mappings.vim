@@ -9,16 +9,9 @@ nnoremap <C-d> <C-d>zz
 vnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
 vnoremap <C-u> <C-u>zz
-" nnoremap <C-e> <C-e>
-" vnoremap <C-e> <C-e>
-" nnoremap <C-y> <C-y>
-" vnoremap <C-y> <C-y>
 
+" Center when going to bottom
 nnoremap G Gzz
-
-" Jump list
-" nnoremap <A-o> <C-o>
-" nnoremap <A-i> <C-i>
 
 "Window navigation
 nnoremap <C-h> :<C-U>TmuxNavigateLeft<cr>
@@ -56,9 +49,6 @@ inoremap <expr> <Enter> pumvisible() ? "\<C-y>" : "\<Enter>"
 " ======================
 
 inoremap jk <Esc>
-vnoremap jk <Esc>
-xnoremap jk <Esc>
-snoremap jk <Esc>
 
 
 " ======================
@@ -80,8 +70,6 @@ snoremap jk <Esc>
 " ======================
 
 " For fzf
-nnoremap <C-p> :Files<CR>
-
 nnoremap <leader>ff :Files<CR>
 nnoremap <leader>fb :Buffers<CR>
 nnoremap <leader>fr :Rg<Space>
@@ -121,19 +109,3 @@ nnoremap <leader>dp <Plug>(coc-diagnostic-prev)
 nnoremap <leader>dn <Plug>(coc-diagnostic-next)
 nnoremap <leader>dl :CocList diagnostics<CR>
 nnoremap <leader>dh :CocCommand diagnostics.showLineDiagnostics<CR>
-
-
-" ======================
-" Miscellaneous
-" ======================
-
-" increment
-" nnoremap <A-a> <C-a>
-" vnoremap <A-a> <C-a>
-
-" decrement
-" nnoremap <A-x> <C-x>
-" vnoremap <A-x> <C-x>
-
-" redo
-" nnoremap <A-r> <C-r>
