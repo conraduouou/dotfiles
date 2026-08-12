@@ -31,14 +31,13 @@ then resorted to have the following principles as my guide:
   why I have `config.txt` for `ililim/dual-key-remap` on Windows and `karabiner` on macOS.
 - I separate binds, remaps, and shortcuts logically by `navigation`, `tool`, and `prefix`.
 - `Navigation` should be instant, hence all movement keymaps bypass prefixes or leader keys. This is
-  also the reason why I spent time making `vim-tmux-navigator` work with nvim and vim, as well as my
-  alt overhaul to make tiling managers work.
+  also the reason why I spent time making `vim-tmux-navigator` work with nvim and vim.
 - `Tool`s should function via leader keys, hence why there are namespace leaders in nvim, and the
   customizable leader key namespace for extensions and plugins.
 - `Prefix` is technically a leader, but set aside for terminal multiplexers and special tools.
 - I guess what sets apart `tool` and `prefix` namespaces are their layers; `tool` commands via the
   leader key namespace (space and a logical letter symbol for me) in the *editor*, and `prefix` via
-  Alt-b for the multiplexer.
+  Ctrl-b for the multiplexer.
 
 
 ## Device Plugins
@@ -54,7 +53,7 @@ This in turn makes me able to remap left ctrl to ctrl when held, and Windows whe
 
 I had initially resorted to mapping almost all ctrl mappings in nvim and vim to alt. This was because kitty
 did not do well with macOS' command mappings, which I was expecting to be the default with mac nvim and vim.
-I have to live with only one control key on macOS though, which sucks when I get used to the ctrl b
+I have to live with only one control key on macOS though, which sucks when I get used to the ctrl-b
 prefix that I could do with the Copilot key.
 
 I think reverting back to ctrl this way would make me conflict-free with tiling managers.
