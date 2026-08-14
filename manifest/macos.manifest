@@ -8,3 +8,5 @@ zshenv         |     .zshenv
 zprofile       |     .zprofile
 
 bin/open-file  |     .local/bin/open-file
+
+kitty.conf     |     .config/kitty/kitty.conf
