@@ -16,5 +16,8 @@ Set-PSReadLineOption -PredictionSource History
 Set-PSReadLineOption -PredictionViewStyle ListView
 
 # For PSReadLine controls
-Set-PSReadLineKeyHandler -Chord Alt+j -Function NextHistory
-Set-PSReadLineKeyHandler -Chord Alt+k -Function PreviousHistory
+Set-PSReadLineKeyHandler -Chord Ctrl+j -Function NextHistory
+Set-PSReadLineKeyHandler -Chord Ctrl+k -Function PreviousHistory
+
+# For vi edit mode in all shells
+Set-PSReadLineOption -EditMode Vi
