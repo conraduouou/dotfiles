@@ -5,12 +5,26 @@ nvim() {
     nvim-open "$@"
 }
 
+fzf-active() {
+    if [[ -n "${TMUX:-}" ]]; then
+        tmux set-option -p @fzf-active 1
+    fi
+}
+
+fzf-inactive() {
+    if [[ -n "${TMUX:-}" ]]; then
+        tmux set-option -p -u @fzf-active
+    fi
+}
+
 # Edit files with fd + fzf
 ef() {
     local search_dir="${1:-.}"
 
+    fzf-active
     local file
-    file=$(fd -t f . "$search_dir" | fzf --tmux)
+    file=$(fd -t f . "$search_dir" | fzf)
+    fzf-inactive
 
     if [[ -n "$file" ]]; then
         if [[ -n "${TMUX:-}" ]]; then
@@ -25,8 +39,10 @@ ef() {
 of() {
     local search_dir="${1:-.}"
 
+    fzf-active
     local file
-    file=$(fd . "$search_dir" | fzf --tmux)
+    file=$(fd . "$search_dir" | fzf)
+    fzf-inactive
 
     [[ -n "$file" ]] && open "$file" &>/dev/null &!
 }
@@ -35,8 +51,10 @@ of() {
 cf() {
     local search_dir="${1:-.}"
 
+    fzf-active
     local dir
-    dir=$(fd -t d . "$search_dir" | fzf --tmux)
+    dir=$(fd -t d . "$search_dir" | fzf)
+    fzf-inactive
 
     [[ -n "$dir" ]] && cd "$dir"
 }
