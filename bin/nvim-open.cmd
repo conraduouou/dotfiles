@@ -23,7 +23,7 @@ powershell.exe -NoProfile -Command "if (Test-Path -LiteralPath '%pipe%') { exit 
 if not errorlevel 1 goto remote_file
 
 rem No server yet.
-psmux split-window -h -c "#{pane_current_path}" -- cmd.exe /c nvim --listen "%spawn_pipe%" "%file%"
+psmux split-window -h -c "#{pane_current_path}" -- cmd.exe /c 'nvim.exe --listen "%spawn_pipe%" "%file%"'
 goto :eof
 
 :remote_file
