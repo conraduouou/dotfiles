@@ -7,7 +7,13 @@ ef() {
     local file
     file=$(fd -t f . "$search_dir" | fzf --tmux)
 
-    [[ -n "$file" ]] && nvim-open "$file" &>/dev/null &!
+    if [[ -n "$file" ]]; then
+        if [[ -n "${TMUX:-}" ]]; then
+            nvim-open "$file" &>/dev/null &!
+        else
+            nvim-open "$file"
+        fi
+    fi
 }
 
 # Open files with fd + fzf
