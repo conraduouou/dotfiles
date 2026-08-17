@@ -97,6 +97,7 @@ way, way, *waaaay* back, and that I should start reading documentations.
 - Rename the `config` to `.config` directory in your home directory.
 - Put the `zprofile`, `zshenv`, `zshrc` files in your home directory, all prefixed by `.`
 - Take out `open-file` from the `bin` directory and put it in your home directory's `.local\bin`.
+- Take out `nvim-open` from the `bin` directory and put it in your home directory's `.local\bin`.
 
 
 ## For Vim dotfiles

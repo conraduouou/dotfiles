@@ -2,9 +2,12 @@ config/vim                            |     vimfiles
 config/nvim                           |     AppData/Local/nvim
 config/vifm                           |     AppData/Roaming/vifm
 config/powershell                     |     .config/powershell
-profile.ps1                           |     Documents/PowerShell/profile.ps1
+config/glazewm                        |     .glzr/glazewm
+
 bin/open-file.cmd                     |     .local/bin/open-file.cmd
+
+profile.ps1                           |     Documents/PowerShell/profile.ps1
+
 dual-key-remap/config.txt             |     Tools/dual-key-remap/config.txt
 dual-key-remap/win-to-ctrl.reg        |     Tools/dual-key-remap/win-to-ctrl.reg
 dual-key-remap/uninstall-remap.reg    |     Tools/dual-key-remap/uninstall-remap.reg
-config/glazewm                        |     .glzr/glazewm
