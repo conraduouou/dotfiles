@@ -7,7 +7,7 @@ ef() {
     local file
     file=$(fd -t f . "$search_dir" | fzf)
 
-    [[ -n "$file" ]] && nvim "$file"
+    [[ -n "$file" ]] && nvim-open "$file"
 }
 
 # Open files with fd + fzf
@@ -28,6 +28,11 @@ cf() {
     dir=$(fd -t d . "$search_dir" | fzf)
 
     [[ -n "$dir" ]] && cd "$dir"
+}
+
+# nvim wrapper
+nvim() {
+    nvim-open "$@"
 }
 
 # For vifm to change dirs in macOS

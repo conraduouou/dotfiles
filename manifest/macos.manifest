@@ -8,6 +8,6 @@ zshenv         |     .zshenv
 zprofile       |     .zprofile
 
 bin/open-file  |     .local/bin/open-file
-bin/vifm-nvim  |     .local/bin/vifm-nvim
+bin/nvim-open  |     .local/bin/nvim-open
 
 kitty.conf     |     .config/kitty/kitty.conf
