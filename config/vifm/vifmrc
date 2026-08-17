@@ -4,6 +4,9 @@ command! o !open-file %c
 " Use nvim
 set vicmd=nvim
 
+" for opening things with L and Enter with nvim
+filetype * vifm-nvim %f
+
 set ignorecase
 set nohlsearch
 

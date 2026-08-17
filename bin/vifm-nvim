@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+file="$1"
+
+# Convert to an absolute path.
+file="$(realpath "$file")"
+
+# Outside tmux: open normally in the current terminal.
+if [[ -z "${TMUX:-}" ]]; then
+    exec nvim "$file"
+fi
+
+current_window="$(tmux display-message -p '#{window_id}')"
+
+# Find an existing nvim pane anywhere in the current tmux window.
+nvim_pane="$(
+    tmux list-panes \
+        -t "$current_window" \
+        -F '#{pane_id} #{pane_current_command}' |
+    awk '$2 == "nvim" { print $1; exit }'
+)"
+
+if [[ -n "$nvim_pane" ]]; then
+    # Escape characters that are special to tmux send-keys.
+    escaped_file="${file//\\/\\\\}"
+    escaped_file="${escaped_file// /\\ }"
+
+    # Open as a new buffer in the existing nvim.
+    tmux send-keys \
+        -t "$nvim_pane" \
+        Escape \
+        ":edit $escaped_file" \
+        Enter
+else
+    # No nvim in this window → create one to the right.
+    tmux split-window -h -- nvim "$file"
+fi
