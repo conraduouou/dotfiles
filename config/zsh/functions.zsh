@@ -5,9 +5,9 @@ ef() {
     local search_dir="${1:-.}"
 
     local file
-    file=$(fd -t f . "$search_dir" | fzf)
+    file=$(fd -t f . "$search_dir" | fzf --tmux)
 
-    [[ -n "$file" ]] && nvim-open "$file"
+    [[ -n "$file" ]] && nvim-open "$file" &>/dev/null &!
 }
 
 # Open files with fd + fzf
@@ -15,9 +15,9 @@ of() {
     local search_dir="${1:-.}"
 
     local file
-    file=$(fd . "$search_dir" | fzf)
+    file=$(fd . "$search_dir" | fzf --tmux)
 
-    [[ -n "$file" ]] && open "$file"
+    [[ -n "$file" ]] && open "$file" &>/dev/null &!
 }
 
 # Change directory with fd + fzf
@@ -25,7 +25,7 @@ cf() {
     local search_dir="${1:-.}"
 
     local dir
-    dir=$(fd -t d . "$search_dir" | fzf)
+    dir=$(fd -t d . "$search_dir" | fzf --tmux)
 
     [[ -n "$dir" ]] && cd "$dir"
 }
