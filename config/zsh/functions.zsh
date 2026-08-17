@@ -1,5 +1,10 @@
 # functions.zsh
 
+# nvim wrapper
+nvim() {
+    nvim-open "$@"
+}
+
 # Edit files with fd + fzf
 ef() {
     local search_dir="${1:-.}"
@@ -9,9 +14,9 @@ ef() {
 
     if [[ -n "$file" ]]; then
         if [[ -n "${TMUX:-}" ]]; then
-            nvim-open "$file" &>/dev/null &!
+            nvim "$file" &>/dev/null &!
         else
-            nvim-open "$file"
+            nvim "$file"
         fi
     fi
 }
@@ -34,11 +39,6 @@ cf() {
     dir=$(fd -t d . "$search_dir" | fzf --tmux)
 
     [[ -n "$dir" ]] && cd "$dir"
-}
-
-# nvim wrapper
-nvim() {
-    nvim-open "$@"
 }
 
 # For vifm to change dirs in macOS

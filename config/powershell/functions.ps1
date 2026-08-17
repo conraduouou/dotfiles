@@ -1,6 +1,11 @@
 # functions.ps1
 
-# Edit files with fd and fzf
+# nvim wrapper
+function nvim {
+    nvim-open.cmd @args
+}
+
+# Edit files with fd + fzf
 function ef {
     param(
         [string]$Path = "."
@@ -15,7 +20,7 @@ function ef {
     }
 }
 
-# Open files with fd and fzf
+# Open files with fd + fzf
 function of {
     param(
         [string]$Path = "."
@@ -26,11 +31,11 @@ function of {
     $file = $files | fzf
 
     if ($file) {
-        . $file
+        Start-Process $file
     }
 }
 
-# Change directory with fd and fzf
+# Change directory with fd + fzf
 function cf {
     param(
         [string]$Path = "."
@@ -41,7 +46,7 @@ function cf {
     $dir = $dirs | fzf
 
     if ($dir) {
-        cd $dir
+        Set-Location $dir
     }
 }
 

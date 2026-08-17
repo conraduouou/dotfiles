@@ -5,6 +5,7 @@ config/powershell                     |     .config/powershell
 config/glazewm                        |     .glzr/glazewm
 
 bin/open-file.cmd                     |     .local/bin/open-file.cmd
+bin/nvim-open.cmd                     |     .local/bin/nvim-open.cmd
 
 profile.ps1                           |     Documents/PowerShell/profile.ps1
 
