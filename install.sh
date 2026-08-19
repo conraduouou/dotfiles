@@ -133,7 +133,35 @@ append_git_include() {
 # <<< dotfiles install <<<
 EOF
 
-    echo "Updated .gitconfig"
+    echo "Updated .gitconfig."
+}
+
+install_starshipfile() {
+    local starshipfile="$HOME/.config/starship.toml"
+
+    if [ -f "$starshipfile" ]; then
+        echo "Starship preset already installed."
+        return
+    fi
+
+    starship preset pure-preset -o "$starshipfile"
+
+    echo "Installed starship pure preset."
+}
+
+install_vimplug() {
+
+    local plugfile="$HOME/.config/vim/autoload/plug.vim"
+
+    if [ -f "$plugfile" ]; then
+        echo "plug.vim already installed."
+        return
+    fi
+
+    curl -fLo "$plugfile" --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+    echo "Installed plug.vim"
 }
 
 ################################################################################
@@ -160,6 +188,8 @@ main() {
     chmod +x "$HOME/.local/bin/open-file"
 
     append_git_include
+    install_starshipfile
+    install_vimplug
 
     echo
     echo "Done!"

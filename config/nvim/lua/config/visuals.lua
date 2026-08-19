@@ -19,7 +19,7 @@ vim.opt.signcolumn = "yes"
 vim.opt.cursorlineopt = "number"
 
 -- Color column (optional)
-vim.opt.colorcolumn = "100"
+-- vim.opt.colorcolumn = "100"
 
 -- Don't show ~ after EOF
 vim.opt.fillchars:append({
@@ -70,7 +70,7 @@ _G.buffers = function()
             local name = vim.fn.bufname(bufnr)
 
             if name == "" then
-                name = "[No Name]"
+                name = "No Name"
             else
                 name = vim.fn.fnamemodify(name, ":t")
             end

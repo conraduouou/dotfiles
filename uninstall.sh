@@ -60,7 +60,10 @@ remove_git_include() {
 
     local gitconfig="$HOME/.gitconfig"
 
-    [[ -f "$gitconfig" ]] || return
+    if [[ -f "$gitconfig" ]]; then
+        echo "Git include already removed."
+        return
+    fi
 
     local temp
     temp="$(mktemp)"
@@ -77,6 +80,34 @@ remove_git_include() {
     echo "Removed Git include."
 }
 
+remove_starshipfile() {
+
+    local starshipfile="$HOME/.config/starship.toml"
+
+    if [[ -f "$starshipfile" ]]; then
+        echo "Starship file already removed."
+        return
+    fi
+
+    rm "$starshipfile"
+    
+    echo "Removed Starship file."
+}
+
+remove_vimplug() {
+
+    local plugfile="$HOME/.config/vim/autoload/plug.vim"
+
+    if [[ -f "$plugfile" ]]; then
+        echo "plug.vim already removed."
+        return
+    fi
+
+    rm "$plugfile"
+
+    echo "Removed plug.vim file"
+}
+
 ################################################################################
 # Uninstall
 ################################################################################
@@ -89,9 +120,13 @@ main() {
 
     uninstall_manifest "common.manifest"
 
+    # remove plug.vim before unlinking vim directory
+    remove_vimplug
+
     uninstall_manifest "macos.manifest"
 
     remove_git_include
+    remove_starshipfile
 
     echo
     echo "Done!"

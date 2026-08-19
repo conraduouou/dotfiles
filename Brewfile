@@ -5,6 +5,8 @@ brew "tmux"
 brew "git"
 brew "vim"
 brew "neovim"
+cask "wezterm"
+brew "starship"
 
 # Navigation
 brew "eza"

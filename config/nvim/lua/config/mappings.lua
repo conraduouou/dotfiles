@@ -4,6 +4,41 @@ local map = vim.keymap.set
 -- Normal mode
 -- ======================
 
+-- to be able to navigate with panes and nvim, like vim-tmux-navigator
+local function smart_navigate(direction, wezterm_direction)
+    local current = vim.fn.winnr()
+    local target = vim.fn.winnr(direction)
+
+    if target ~= current then
+        -- Neovim has a window in that direction.
+        vim.cmd("wincmd " .. direction)
+    else
+        -- We're at the edge of Neovim; move the WezTerm pane instead.
+        vim.system({
+            "wezterm",
+            "cli",
+            "activate-pane-direction",
+            wezterm_direction,
+        })
+    end
+end
+
+vim.keymap.set("n", "<C-h>", function()
+    smart_navigate("h", "Left")
+end)
+
+vim.keymap.set("n", "<C-j>", function()
+    smart_navigate("j", "Down")
+end)
+
+vim.keymap.set("n", "<C-k>", function()
+    smart_navigate("k", "Up")
+end)
+
+vim.keymap.set("n", "<C-l>", function()
+    smart_navigate("l", "Right")
+end)
+
 map("n", "<leader>h", "<Cmd>nohlsearch<CR>")
 
 -- Scrolling
@@ -11,8 +46,8 @@ map({ "n", "v" }, "<C-d>", "<C-d>zz")
 map({ "n", "v" }, "<C-u>", "<C-u>zz")
 
 -- Buffer switching
-map("n", "<C-p>", "<cmd>bprev<cr>")
-map("n", "<C-n>", "<cmd>bnext<cr>")
+map("n", "<C-S-h>", "<cmd>bprevious<cr>", { desc = "Previous buffer" })
+map("n", "<C-S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 
 -- Center when going to bottom
 map("n", "G", "Gzz")
@@ -70,7 +105,20 @@ map("i", "jk", "<Esc>")
 -- map("v", "<C-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<CR>gv=gv")
 
 -- ======================
--- FZF
+-- Buffers namespace
+-- ======================
+
+map("n", "<leader>bp", "<cmd>bprevious<cr>", { desc = "Previous buffer" })
+map("n", "<leader>bn", "<cmd>bnext<cr>", { desc = "Next buffer" })
+map("n", "<leader>bb", "<cmd>enew<cr>", { desc = "New buffer" })
+map("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Delete buffer" })
+map("n", "<leader>bo", "<cmd>%bd|e#<cr>", { desc = "Delete other buffers" })
+map("n", "<leader>bl", "<cmd>ls<cr>", { desc = "List buffers" })
+map("n", "<leader>br", "<cmd>file<cr>", { desc = "Rename buffer" })
+map("n", "<leader>bs", "<cmd>buffer<space>", { desc = "Switch buffer" })
+
+-- ======================
+-- fzf
 -- ======================
 
 local fzf = require("fzf-lua")

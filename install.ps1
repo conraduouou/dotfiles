@@ -167,6 +167,7 @@ function Append-GitInclude {
     $Content = Get-Content $GitConfig -Raw
 
     if ($Content.Contains("# >>> dotfiles install >>>")) {
+        Write-Host "Git config already appended."
         return
     }
 
@@ -177,6 +178,42 @@ function Append-GitInclude {
     path = ~/.config/git/config
 # <<< dotfiles install <<<
 "@
+
+    Write-Host "Git config appended."
+}
+
+function Install-StarshipFile {
+
+    $StarshipFile = Join-Path $HOME ".config/starship.toml"
+
+    if (Test-Path $StarshipFile) {
+        Write-Host "Starship preset already installed."
+        return
+    }
+
+    &starship preset pure-preset -o $StarshipFile
+
+    Write-Host "Installed starship pure preset."
+}
+
+function Install-VimPlug {
+
+    $PlugFile = Join-Path $HOME "vimfiles/autoload/plug.vim"
+
+    if (Test-Path $PlugFile) {
+        Write-Host "plug.vim file already installed."
+        return
+    }
+
+    $PlugDirectory = Split-Path $PlugFile
+
+    New-Item $PlugDirectory -ItemType Directory -Force | Out-Null
+
+    Invoke-WebRequest `
+        -Uri "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" `
+        -OutFile $PlugFile
+
+    Write-Host "Install plug.vim file"
 }
 
 ###############################################################################
@@ -205,6 +242,8 @@ function Main {
     Install-Manifest "windows.manifest"
 
     Append-GitInclude
+    Install-StarshipFile
+    Install-VimPlug
 
     Write-Host ""
     Write-Host "Done!"

@@ -75,6 +75,7 @@ function Remove-GitInclude {
     $GitConfig = Join-Path $HOME ".gitconfig"
 
     if (-not (Test-Path $GitConfig)) {
+        Write-Host "Git include already removed."
         return
     }
 
@@ -106,6 +107,32 @@ function Remove-GitInclude {
     Write-Host "Removed Git include."
 }
 
+function Remove-StarshipFile {
+
+    $StarshipFile = Join-Path $HOME ".config/starship.toml"
+
+    if (-not (Test-Path $StarshipFile)) {
+        Write-Host "Starship file already removed."
+        return
+    }
+
+    Remove-Item $StarshipFile -ErrorAction SilentlyContinue
+    Write-Host "Removed Starship file."
+}
+
+function Remove-VimPlug {
+
+    $PlugFile = Join-Path $HOME "vimfiles/autoload/plug.vim"
+
+    if (-not (Test-Path $PlugFile)) {
+        Write-Host "plug.vim already removed."
+        return
+    }
+
+    Remove-Item $PlugFile -ErrorAction SilentlyContinue
+    Write-Host "Removed plug.vim file."
+}
+
 ###############################################################################
 # Uninstall
 ###############################################################################
@@ -116,9 +143,13 @@ Write-Host ""
 
 Uninstall-Manifest "common.manifest"
 
+# Remove plug.vim first before unlinking vim directory
+Remove-VimPlug
+
 Uninstall-Manifest "windows.manifest"
 
 Remove-GitInclude
+Remove-StarshipFile
 
 Write-Host ""
 Write-Host "Done!"

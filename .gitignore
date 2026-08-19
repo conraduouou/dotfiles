@@ -11,6 +11,7 @@ lazy-lock.json
 *.swo
 *~
 config/vim/plugged
+config/vim/autoload
 
 
 # Glazewm/any logs
