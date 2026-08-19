@@ -1,6 +1,9 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 
+local is_windows = wezterm.target_triple:find("windows") ~= nil
+local ctrl = is_macos and "CTRL" or "CMD"
+
 local M = {}
 
 -- helpers
@@ -26,27 +29,21 @@ local function is_fzf(pane)
         or is_process(pane, "[/]fzf$")
 end
 
--- Smart pane switching with awareness of Neovim.
-local function navigate(direction, key, pass_to_fzf)
-    return wezterm.action_callback(
-        function(window, pane)
-            if is_neovim(pane) or (pass_to_fzf and is_fzf(pane)) then
-                window:perform_action(
-                    act.SendKey {
-                        key = key,
-                        mods = "CTRL",
-                    },
-                    pane
-                )
-                return
-            end
-
+-- translate cmd to ctrl when in neovim or fzf
+local function cmd_or_ctrl(key, action)
+    return wezterm.action_callback(function(window, pane)
+        if is_neovim(pane) or (pass_to_fzf and is_fzf(pane)) then
             window:perform_action(
-                act.ActivatePaneDirection(direction),
+                act.SendKey {
+                    key = key,
+                    mods = "CTRL",
+                },
                 pane
             )
+        else
+            window:perform_action(action, pane)
         end
-    )
+    end)
 end
 
 -- Handle repeating actions
@@ -77,23 +74,35 @@ function M.apply(config)
 
         {
             key = "h",
-            mods = "CTRL",
-            action = navigate("Left", "h"),
+            mods = ctrl,
+            action = cmd_or_ctrl(
+                "h",
+                act.ActivatePaneDirection("Left")
+            ),
         },
         {
             key = "j",
-            mods = "CTRL",
-            action = navigate("Down", "j", true),
+            mods = ctrl,
+            action = cmd_or_ctrl(
+                "j",
+                act.ActivatePaneDirection("Down")
+            ),
         },
         {
             key = "k",
-            mods = "CTRL",
-            action = navigate("Up", "k", true),
+            mods = ctrl,
+            action = cmd_or_ctrl(
+                "k",
+                act.ActivatePaneDirection("Up")
+            ),
         },
         {
             key = "l",
-            mods = "CTRL",
-            action = navigate("Right", "l"),
+            mods = ctrl,
+            action = cmd_or_ctrl(
+                "l",
+                act.ActivatePaneDirection("Right")
+            ),
         },
 
         -- =========================================
@@ -198,64 +207,64 @@ function M.apply(config)
         -- Ctrl-[ / Ctrl-] → previous / next tab
         {
             key = "[",
-            mods = "CTRL",
+            mods = ctrl,
             action = act.ActivateTabRelative(-1),
         },
         {
             key = "]",
-            mods = "CTRL",
+            mods = ctrl,
             action = act.ActivateTabRelative(1),
         },
 
         -- Ctrl-0 through Ctrl-9
         {
             key = "0",
-            mods = "CTRL",
+            mods = ctrl,
             action = act.ActivateTab(0),
         },
         {
             key = "1",
-            mods = "CTRL",
+            mods = ctrl,
             action = act.ActivateTab(1),
         },
         {
             key = "2",
-            mods = "CTRL",
+            mods = ctrl,
             action = act.ActivateTab(2),
         },
         {
             key = "3",
-            mods = "CTRL",
+            mods = ctrl,
             action = act.ActivateTab(3),
         },
         {
             key = "4",
-            mods = "CTRL",
+            mods = ctrl,
             action = act.ActivateTab(4),
         },
         {
             key = "5",
-            mods = "CTRL",
+            mods = ctrl,
             action = act.ActivateTab(5),
         },
         {
             key = "6",
-            mods = "CTRL",
+            mods = ctrl,
             action = act.ActivateTab(6),
         },
         {
             key = "7",
-            mods = "CTRL",
+            mods = ctrl,
             action = act.ActivateTab(7),
         },
         {
             key = "8",
-            mods = "CTRL",
+            mods = ctrl,
             action = act.ActivateTab(8),
         },
         {
             key = "9",
-            mods = "CTRL",
+            mods = ctrl,
             action = act.ActivateTab(9),
         },
 
@@ -315,13 +324,23 @@ function M.apply(config)
         },
 
         -- =========================================
-        -- Paste
+        -- Miscellaneous
         -- =========================================
 
         {
             key = "{",
             mods = "LEADER",
             action = act.PasteFrom("Clipboard"),
+        },
+        {
+            key = "q",
+            mods = "CMD",
+            action = act.QuitApplication,
+        },
+        {
+            key = "x",
+            mods = "LEADER",
+            action = act.CloseCurrentPane { confirm = true },
         },
     }
 
@@ -364,6 +383,44 @@ function M.apply(config)
             },
         },
     }
+
+    if not is_windows then
+        for _, key in ipairs({
+            "d", -- half-page down
+            "u", -- half-page up
+            "o", -- jump last position
+            "i", -- jump next position
+            "a", -- increment
+            "x", -- decrement
+            "e", -- nudge down
+            "y", -- nudge up
+            "r", -- redo
+        }) do
+            table.insert(config.keys, {
+                key = key,
+                mods = "CMD",
+                action = act.SendKey {
+                    key = key,
+                    mods = "CTRL",
+                }
+            })
+        end
+    end
+
+    if not is_windows then
+        for _, key in ipairs({
+            { key = "h", code = 72 },
+            { key = "l", code = 76 },
+        }) do
+            table.insert(config.keys, {
+                key = key.key,
+                mods = "CMD|SHIFT",
+                action = act.SendString(
+                    string.format("\27[%d;6u", key.code)
+                ),
+            })
+        end
+    end
 end
 
 return M

@@ -23,7 +23,12 @@ end)
 function M.apply(config)
     -- Font
     config.font = wezterm.font("Cascadia Mono")
-    config.font_size = 10.0
+
+    if wezterm.target_triple:find("windows") then
+        config.font_size = 10.0
+    else
+        config.font_size = 16.0
+    end
 
     -- Cursor
     config.default_cursor_style = "BlinkingBar"

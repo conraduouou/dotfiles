@@ -5,38 +5,42 @@ local map = vim.keymap.set
 -- ======================
 
 -- to be able to navigate with panes and nvim, like vim-tmux-navigator
-local function smart_navigate(direction, wezterm_direction)
-    local current = vim.fn.winnr()
-    local target = vim.fn.winnr(direction)
-
-    if target ~= current then
-        -- Neovim has a window in that direction.
-        vim.cmd("wincmd " .. direction)
-    else
-        -- We're at the edge of Neovim; move the WezTerm pane instead.
+local function activate_pane(direction)
+    -- for future support of other terminals
+    if vim.env.TERM_PROGRAM == "WezTerm" then
         vim.system({
             "wezterm",
             "cli",
             "activate-pane-direction",
-            wezterm_direction,
+            direction,
         })
     end
 end
+local function smart_navigate(direction, terminal_direction)
+    local current = vim.fn.winnr()
+    local target = vim.fn.winnr(direction)
 
-vim.keymap.set("n", "<C-h>", function()
-    smart_navigate("h", "Left")
+    if target ~= current then
+        vim.cmd("wincmd " .. direction)
+    else
+        activate_pane(terminal_direction)
+    end
+end
+
+map("n", "<C-h>", function()
+    smart_navigate("h", "left")
 end)
 
-vim.keymap.set("n", "<C-j>", function()
-    smart_navigate("j", "Down")
+map("n", "<C-j>", function()
+    smart_navigate("j", "down")
 end)
 
-vim.keymap.set("n", "<C-k>", function()
-    smart_navigate("k", "Up")
+map("n", "<C-k>", function()
+    smart_navigate("k", "up")
 end)
 
-vim.keymap.set("n", "<C-l>", function()
-    smart_navigate("l", "Right")
+map("n", "<C-l>", function()
+    smart_navigate("l", "right")
 end)
 
 map("n", "<leader>h", "<Cmd>nohlsearch<CR>")

@@ -1,26 +1,28 @@
+local opt = vim.opt
+
 -- ======================
 -- General
 -- ======================
 
-vim.opt.number = true
-vim.opt.wrap = false
-vim.opt.relativenumber = true
-vim.opt.clipboard = "unnamedplus"
-vim.opt.autowrite = true
-vim.opt.showcmd = true
+opt.number = true
+opt.wrap = false
+opt.relativenumber = true
+opt.clipboard = "unnamedplus"
+opt.autowrite = true
+opt.showcmd = true
 
 -- Determine OS
 if vim.fn.has("win32") == 1 then
-    vim.opt.shell = "cmd.exe"
+    opt.shell = "cmd.exe"
 else
-    vim.opt.shell = "zsh"
+    opt.shell = "zsh"
 end
 
-vim.opt.autoread = true
-vim.opt.updatetime = 50
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.softtabstop = 1
-vim.opt.expandtab = true
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
+opt.autoread = true
+opt.updatetime = 50
+opt.tabstop = 4
+opt.shiftwidth = 4
+opt.softtabstop = 1
+opt.expandtab = true
+opt.ignorecase = true
+opt.smartcase = true
