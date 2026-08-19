@@ -209,11 +209,19 @@ function Install-VimPlug {
 
     New-Item $PlugDirectory -ItemType Directory -Force | Out-Null
 
-    Invoke-WebRequest `
-        -Uri "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" `
-        -OutFile $PlugFile
 
-    Write-Host "Install plug.vim file"
+    try {
+
+        curl.exe -fLo $PlugFile `
+            "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+
+        Write-Host "Installed plug.vim file"
+
+    } catch {
+
+        Write-Host "Failed to get plug.vim file. Please install manually."
+
+    }
 }
 
 ###############################################################################
