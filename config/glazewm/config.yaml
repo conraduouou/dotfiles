@@ -175,7 +175,7 @@ binding_modes:
   - name: 'launch'
     keybindings:
       - commands:
-          - 'shell-exec --hide-window pwsh -Command "Start-Process wt -Verb RunAs"'
+          - 'shell-exec --hide-window pwsh -NoProfile -Command "Start-Process wezterm-gui.exe -Verb RunAs"'
           - 'wm-disable-binding-mode --name launch'
         bindings: ['1']
       - commands:
