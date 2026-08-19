@@ -6,6 +6,8 @@ config/glazewm                        |     .glzr/glazewm
 
 bin/open-file.cmd                     |     .local/bin/open-file.cmd
 bin/nvim-open.cmd                     |     .local/bin/nvim-open.cmd
+bin/nvim-open-tmux.cmd                |     .local/bin/nvim-open-tmux
+bin/nvim-open-wezterm.cmd             |     .local/bin/nvim-open-wezterm
 
 profile.ps1                           |     Documents/PowerShell/profile.ps1
 

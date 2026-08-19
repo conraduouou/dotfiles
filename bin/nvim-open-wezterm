@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+tab_id=$(
+    wezterm cli list --format json |
+        jq -r --argjson pane "$WEZTERM_PANE" \
+            '.[] | select(.pane_id == $pane) | .tab_id'
+)
+
+socket_dir="${XDG_RUNTIME_DIR:-$HOME/.cache}/nvim"
+socket="$socket_dir/wezterm-${tab_id}.sock"
+
+mkdir -p "$socket_dir"
+
+# If an Nvim instance is already listening on this socket,
+# send the files to it.
+if [[ -S "$socket" ]]; then
+    exec nvim --server "$socket" --remote "$@"
+fi
+
+# No existing Nvim instance: create one in a new WezTerm pane.
+pane_id="$(
+    wezterm cli split-pane \
+        --right \
+        --cwd "$PWD" \
+        -- nvim --listen "$socket" "$@"
+)"
+
+# Focus the newly created Nvim pane.
+exec wezterm cli activate-pane --pane-id "$pane_id"

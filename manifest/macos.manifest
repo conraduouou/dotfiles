@@ -1,13 +1,15 @@
-config/vim     |     .config/vim
-config/zsh     |     .config/zsh
-config/nvim    |     .config/nvim
-config/vifm    |     .config/vifm
+config/vim             |     .config/vim
+config/zsh             |     .config/zsh
+config/nvim            |     .config/nvim
+config/vifm            |     .config/vifm
 
-zshrc          |     .zshrc
-zshenv         |     .zshenv
-zprofile       |     .zprofile
+zshrc                  |     .zshrc
+zshenv                 |     .zshenv
+zprofile               |     .zprofile
 
-bin/open-file  |     .local/bin/open-file
-bin/nvim-open  |     .local/bin/nvim-open
+bin/open-file          |     .local/bin/open-file
+bin/nvim-open          |     .local/bin/nvim-open
+bin/nvim-open-tmux     |     .local/bin/nvim-open-tmux
+bin/nvim-open-wezterm  |     .local/bin/nvim-open-wezterm
 
-kitty.conf     |     .config/kitty/kitty.conf
+kitty.conf             |     .config/kitty/kitty.conf

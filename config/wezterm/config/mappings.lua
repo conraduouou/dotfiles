@@ -32,7 +32,7 @@ end
 -- translate cmd to ctrl when in neovim or fzf
 local function cmd_or_ctrl(key, action)
     return wezterm.action_callback(function(window, pane)
-        if is_neovim(pane) or (pass_to_fzf and is_fzf(pane)) then
+        if is_neovim(pane) or is_fzf(pane) then
             window:perform_action(
                 act.SendKey {
                     key = key,

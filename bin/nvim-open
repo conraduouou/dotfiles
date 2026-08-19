@@ -2,35 +2,10 @@
 
 set -euo pipefail
 
-# Outside tmux: behave exactly like normal nvim.
-if [[ -z "${TMUX:-}" ]]; then
+if [[ -n "${WEZTERM_PANE:-}" ]]; then
+    exec nvim-open-wezterm "$@"
+elif [[ -n "${TMUX:-}" ]]; then
+    exec nvim-open-tmux "$@"
+else
     exec nvim "$@"
 fi
-
-# Identify the current tmux window.
-window_id="$(tmux display-message -p '#{window_id}')"
-
-# One Neovim socket per tmux window.
-socket_dir="${XDG_CACHE_HOME:-$HOME/.cache}/nvim"
-socket="$socket_dir/tmux-${window_id}.sock"
-
-mkdir -p "$socket_dir"
-
-# No arguments:
-# Start Neovim normally, but make it listen on this window's socket.
-if [[ $# -eq 0 ]]; then
-    exec nvim --listen "$socket"
-fi
-
-# File argument(s).
-file="$(realpath "$1")"
-
-# If the socket exists, talk directly to that Neovim instance.
-if nvim --server "$socket" --remote-expr '1' >/dev/null 2>&1; then
-    exec nvim --server "$socket" --remote "$file"
-fi
-
-# No server yet:
-# Create Neovim in the current tmux window with its socket.
-tmux split-window -h -c "#{pane_current_path}" \
-    "nvim --listen '$socket' '$file'"
