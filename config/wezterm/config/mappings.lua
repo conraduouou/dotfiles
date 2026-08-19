@@ -204,15 +204,15 @@ function M.apply(config)
         -- Tabs
         -- =========================================
 
-        -- Ctrl-[ / Ctrl-] → previous / next tab
+        -- Ctrl-Alt-h / Ctrl-Alt-l → previous / next tab
         {
-            key = "[",
-            mods = ctrl,
+            key = "h",
+            mods = ctrl .. "|ALT",
             action = act.ActivateTabRelative(-1),
         },
         {
-            key = "]",
-            mods = ctrl,
+            key = "l",
+            mods = ctrl .. "|ALT",
             action = act.ActivateTabRelative(1),
         },
 
