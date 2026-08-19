@@ -60,7 +60,7 @@ remove_git_include() {
 
     local gitconfig="$HOME/.gitconfig"
 
-    if [[ -f "$gitconfig" ]]; then
+    if [[ ! -f "$gitconfig" ]]; then
         echo "Git include already removed."
         return
     fi
@@ -84,7 +84,7 @@ remove_starshipfile() {
 
     local starshipfile="$HOME/.config/starship.toml"
 
-    if [[ -f "$starshipfile" ]]; then
+    if [[ ! -f "$starshipfile" ]]; then
         echo "Starship file already removed."
         return
     fi
@@ -98,7 +98,7 @@ remove_vimplug() {
 
     local plugfile="$HOME/.config/vim/autoload/plug.vim"
 
-    if [[ -f "$plugfile" ]]; then
+    if [[ ! -f "$plugfile" ]]; then
         echo "plug.vim already removed."
         return
     fi
