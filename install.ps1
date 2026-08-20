@@ -35,6 +35,8 @@ function Install-Packages {
 
     $PackageFile = Join-Path $Repo "Chocolateyfile"
 
+    $ChocoList = choco list | ForEach-Object { ($_ -split " ")[0] }
+
     Get-Content $PackageFile |
         ForEach-Object {
 
@@ -42,6 +44,11 @@ function Install-Packages {
 
             if ($Package -eq "") { return }
             if ($Package.StartsWith("#")) { return }
+
+            if ($ChocoList -contains $Package) {
+                Write-Host "$Package already installed. Skipping..."
+                return
+            }
 
             Write-Host "Installing $Package..."
 
