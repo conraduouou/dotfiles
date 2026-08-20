@@ -260,6 +260,8 @@ end, { desc = "Resize down coarse" })
 -- fzf
 -- ======================
 
+local fzf = require("fzf-lua")
+
 map("n", "<leader>ff", fzf.files,             { desc = "Find files" })
 map("n", "<leader>fb", fzf.buffers,           { desc = "Find buffers" })
 map("n", "<leader>fr", fzf.live_grep,         { desc = "Live grep" })
