@@ -38,6 +38,13 @@ then resorted to have the following principles as my guide:
 - I guess what sets apart `tool` and `prefix` namespaces are their layers; `tool` commands via the
   leader key namespace (space and a logical letter symbol for me) in the *editor*, and `prefix` via
   Ctrl-b for the multiplexer.
+- I separate `navigation` from `tool` and `prefix` via the following questions, whereby answering one
+  would place it on the latter two layers:
+  - Does it manipulate?
+  - Does it transform?
+  - Does it change layout?
+  - Does it not perform a *simple process, such as navigation and focus?
+  - Does it open or run an external command?
 
 
 ## Device Plugins
@@ -89,15 +96,14 @@ way, way, *waaaay* back, and that I should start reading documentations.
 - Take out `vifm` from the `config` directory and put it in `~\AppData\Roaming`.
 - Take out `powershell` from the `config` directory and put it in your home directory's `.config`.
 - Put the `profile.ps1` file in your ~/Documents/PowerShell directory
-- Take out `open-file.cmd` from the `bin` directory and put it in your home directory's `.local\bin`.
+- Take out the `*.cmd` files from the `bin` directory and put it in your home directory's `.local\bin`.
 - Take out `config.txt` from the `dual-key-remap` directory and put it under `~\Tools\dual-key-remap`.
 - Take out `glazewm` from the `config` directory and put it in `~\.glzr`.
 
 ***For macOS***
 - Rename the `config` to `.config` directory in your home directory.
 - Put the `zprofile`, `zshenv`, `zshrc` files in your home directory, all prefixed by `.`
-- Take out `open-file` from the `bin` directory and put it in your home directory's `.local\bin`.
-- Take out `nvim-open` from the `bin` directory and put it in your home directory's `.local\bin`.
+- Take out the extensionless files from the `bin` directory and put it in your home directory's `.local\bin`.
 
 
 ## For Vim dotfiles
@@ -112,8 +118,8 @@ coc.nvim depends on this
 ## Terminal Plugins
 
 These are things I consider essential for my dev experience:
-1. *tmux* (psmux for Windows)
-Because duh
+1. *WezTerm*
+The cross-platform terminal emulator/multiplexer I never thought I needed
 2. *fzf*
 This is basically ctrl P from VS Code and IT IS GOOD.
 3. *bat*
@@ -136,7 +142,11 @@ The ultimate barebones text editor to be IDE.
 A fork of the ultimate barebones text editor to be IDE--and it does a great heck of a job at it.
 12. *zoxide*
 The jump to anywhere is just truly magnificent.
-13. *git*
+13. *starship*
+I have to at least have some preferences, right?
+14. *git*
 Mainly because I want it to be ready immediately, which chocolatey helps a lot in.
-14. *Nodejs*
+15. *Nodejs*
 The above reason.
+16. *tmux* (psmux for Windows)
+~~Because duh~~ Indispensible before, but now obsolete due to WezTerm goodness
