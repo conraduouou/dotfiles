@@ -2,7 +2,7 @@ local wezterm = require("wezterm")
 local act = wezterm.action
 
 local is_windows = wezterm.target_triple:find("windows") ~= nil
-local ctrl = is_macos and "CTRL" or "CMD"
+local ctrl = is_windows and "CTRL" or "CMD"
 
 local M = {}
 
