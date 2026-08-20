@@ -2,10 +2,10 @@
 
 set -euo pipefail
 
-if [[ -n "${WEZTERM_PANE:-}" ]]; then
-    exec nvim-open-wezterm "$@"
-elif [[ -n "${TMUX:-}" ]]; then
+if [[ -n "${TMUX:-}" ]] && command -v nvim-open-tmux >/dev/null 2>&1; then
     exec nvim-open-tmux "$@"
+elif [[ -n "${WEZTERM_PANE:-}" ]] && command -v nvim-open-wezterm >/dev/null 2>&1; then
+    exec nvim-open-wezterm "$@"
 else
     exec nvim "$@"
 fi
