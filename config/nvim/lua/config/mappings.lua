@@ -190,7 +190,9 @@ local function directional_resize(key)
 end
 
 -- For repeatable mappings, really just to emulate tmux's -r behavior
-local function repeatable(key, timeout)
+local function repeatable(key)
+    local timeout = 500
+
     directional_resize(key)
 
     local timer = vim.uv.new_timer()
@@ -224,35 +226,35 @@ local function repeatable(key, timeout)
 end
 
 map("n", "<leader>wh", function()
-  repeatable("h", 500)
+  repeatable("h")
 end, { desc = "Resize left fine" })
 
 map("n", "<leader>wl", function()
-  repeatable("l", 500)
+  repeatable("l")
 end, { desc = "Resize right fine" })
 
 map("n", "<leader>wj", function()
-  repeatable("j", 500)
+  repeatable("j")
 end, { desc = "Resize up fine" })
 
 map("n", "<leader>wk", function()
-  repeatable("k", 500)
+  repeatable("k")
 end, { desc = "Resize down fine" })
 
 map("n", "<leader>wH", function()
-  repeatable("H", 500)
+  repeatable("H")
 end, { desc = "Resize left coarse" })
 
 map("n", "<leader>wL", function()
-  repeatable("L", 500)
+  repeatable("L")
 end, { desc = "Resize right coarse" })
 
 map("n", "<leader>wJ", function()
-  repeatable("J", 500)
+  repeatable("J")
 end, { desc = "Resize up coarse" })
 
 map("n", "<leader>wK", function()
-  repeatable("K", 500)
+  repeatable("K")
 end, { desc = "Resize down coarse" })
 
 

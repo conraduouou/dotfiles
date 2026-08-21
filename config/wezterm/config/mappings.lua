@@ -55,7 +55,7 @@ local function repeatable(action)
                 act.ActivateKeyTable {
                     name = "manipulate",
                     one_shot = false,
-                    timeout_milliseconds = 1000,
+                    timeout_milliseconds = 500,
                 },
                 pane
             )
