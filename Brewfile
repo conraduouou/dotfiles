@@ -21,3 +21,6 @@ brew "bat"
 brew "fd"
 brew "ripgrep"
 brew "fzf"
+
+# LSP Requirements
+brew "powershell"
