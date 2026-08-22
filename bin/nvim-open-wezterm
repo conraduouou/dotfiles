@@ -18,10 +18,31 @@ if [[ $# -eq 0 ]]; then
     exec nvim --listen "$socket"
 fi
 
+# Resolve absolute path of file sent,
+# also track if there are no files in the command
+actual_files=0
+for file in "$@"; do
+    if [[ "$file" = /* || "$file" = -* ]]; then
+        args+=("$file")
+    else
+        args+=("$PWD/$file")
+    fi
+
+    if [[ "$file" != -* ]]; then
+        actual_files=$(( actual_files + 1 ))
+    fi
+done
+
+# If there weren't any files passed, just argument flags
+# For example: nvim --help
+if [[ "$actual_files" = 0 ]]; then
+    exec nvim "$@"
+fi
+
 # If an Nvim instance is already listening on this socket,
 # send the files to it.
 if [[ -S "$socket" ]]; then
-    exec nvim --server "$socket" --remote "$@"
+    exec nvim --server "$socket" --remote "${args[@]}"
 fi
 
 # No existing Nvim instance: create one in a new WezTerm pane.
