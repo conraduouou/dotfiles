@@ -172,7 +172,7 @@ local function directional_resize(key)
                 vim.cmd("resize +" .. amount)
             end
         end
-    else
+    elseif key == "h" or key == "l" then
         if current == vim.fn.winnr("1l") then
             if key == "h" then
                 vim.cmd("vertical resize +" .. amount)
@@ -311,3 +311,9 @@ map("n", "<leader>dp", "<Plug>(coc-diagnostic-prev)",       { desc = "Previous d
 map("n", "<leader>dn", "<Plug>(coc-diagnostic-next)",       { desc = "Next diagnostic" })
 map("n", "<leader>dl", "<Cmd>CocList diagnostics<CR>",      { desc = "List diagnostics" })
 map("n", "<leader>dh", "<Cmd>CocCommand diagnostics.showLineDiagnostics<CR>", { desc = "Show line diagnostics" })
+
+-- ======================
+-- Miscellaneous
+-- ======================
+
+map("c", "<C-v>", "<C-r>+",                  { desc = "Paste from clipboard in command-line mode" })

@@ -395,6 +395,7 @@ function M.apply(config)
             "e", -- nudge down
             "y", -- nudge up
             "r", -- redo
+            "v", -- visual-block and paste
         }) do
             table.insert(config.keys, {
                 key = key,
