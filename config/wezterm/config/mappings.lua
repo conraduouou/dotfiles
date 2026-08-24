@@ -306,9 +306,12 @@ function M.apply(config)
         -- =========================================
 
         {
-            key = "{",
-            mods = "LEADER",
-            action = act.PasteFrom("Clipboard"),
+            key = "v",
+            mods = "CTRL",
+            action = cmd_or_ctrl(
+                "v",
+                act.PasteFrom("Clipboard")
+            ),
         },
         {
             key = "q",
