@@ -375,7 +375,6 @@ function M.apply(config)
             { key = "r", code = 114 }, -- redo
             { key = "v", code = 118 }, -- visual-block and paste
             { key = ",", code = 44 },  -- open blink cmp autocomplete
-            { key = "[", code = 91 },  -- previous diagnostic
             { key = "]", code = 93 },  -- next diagnostic
         }) do
             table.insert(config.keys, {
@@ -392,6 +391,8 @@ function M.apply(config)
         for _, key in ipairs({
             { key = "h", code = 72 },
             { key = "l", code = 76 },
+            { key = "o", code = 111 },
+            { key = "}", code = 125 },
         }) do
             table.insert(config.keys, {
                 key = key.key,

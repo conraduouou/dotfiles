@@ -55,7 +55,7 @@ map({ "n", "v" }, "<C-u>", "<C-u>zz",         { desc = "Half-page up and center"
 
 -- Jumps
 map("n", "<C-o>", "<C-o>zz",                  { desc = "Half-page down and center" })
-map("n", "<C-i>", "<C-i>zz",                  { desc = "Half-page up and center" })
+map("n", "<C-S-o>", "<C-i>zz",                { desc = "Half-page up and center" })
 
 -- Buffer switching
 map("n", "<C-S-h>", "<cmd>bprevious<cr>",     { desc = "Previous buffer" })
@@ -83,25 +83,12 @@ map("i", "<C-j>", "<Down>")
 map("i", "<C-k>", "<Up>")
 map("i", "<C-l>", "<Right>")
 
+
 -- ======================
 -- Escape remaps
 -- ======================
 
 map("i", "jk", "<Esc>",                       { desc = "Quick escape" })
-
-
--- ======================
--- Move lines
--- ======================
-
--- map("n", "<C-k>", ":<C-u>execute 'move .-' . (v:count1 + 1)<CR>==")
--- map("n", "<C-j>", ":<C-u>execute 'move .+' . v:count1<CR>==")
-
--- map("i", "<C-j>", "<Esc><Cmd>m .+1<CR>==gi")
--- map("i", "<C-k>", "<Esc><Cmd>m .-2<CR>==gi")
-
--- map("v", "<C-j>", ":<C-u>execute \"'<,'>move '>+\" . v:count1<CR>gv=gv")
--- map("v", "<C-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<CR>gv=gv")
 
 
 -- ======================
@@ -111,11 +98,9 @@ map("i", "jk", "<Esc>",                       { desc = "Quick escape" })
 map("n", "<leader>bp", "<cmd>bprevious<cr>",  { desc = "Previous buffer" })
 map("n", "<leader>bn", "<cmd>bnext<cr>",      { desc = "Next buffer" })
 map("n", "<leader>bb", "<cmd>enew<cr>",       { desc = "New buffer" })
-map("n", "<leader>bd", "<cmd>bdelete<cr>",    { desc = "Delete buffer" })
+map("n", "<leader>bx", "<cmd>bdelete<cr>",    { desc = "Delete buffer" })
 map("n", "<leader>bo", "<cmd>%bd|e#<cr>",     { desc = "Delete other buffers" })
 map("n", "<leader>bl", "<cmd>ls<cr>",         { desc = "List buffers" })
-map("n", "<leader>br", "<cmd>file<cr>",       { desc = "Rename buffer" })
-map("n", "<leader>bs", "<cmd>buffer<space>",  { desc = "Switch buffer" })
 
 
 -- ======================
@@ -223,11 +208,11 @@ end, { desc = "Resize right fine" })
 
 map("n", "<leader>wj", function()
   repeatable("j")
-end, { desc = "Resize up fine" })
+end, { desc = "Resize down fine" })
 
 map("n", "<leader>wk", function()
   repeatable("k")
-end, { desc = "Resize down fine" })
+end, { desc = "Resize right fine" })
 
 map("n", "<leader>wH", function()
   repeatable("H")
@@ -239,11 +224,11 @@ end, { desc = "Resize right coarse" })
 
 map("n", "<leader>wJ", function()
   repeatable("J")
-end, { desc = "Resize up coarse" })
+end, { desc = "Resize down coarse" })
 
 map("n", "<leader>wK", function()
   repeatable("K")
-end, { desc = "Resize down coarse" })
+end, { desc = "Resize up coarse" })
 
 
 -- ======================
@@ -263,12 +248,12 @@ map("n", "<leader>fL", fzf.lines,             { desc = "Search all lines" })
 map("n", "<leader>ft", fzf.tags,              { desc = "Find tags" })
 map("n", "<leader>fT", fzf.btags,             { desc = "Find buffer tags" })
 
-map("n", "<leader>mm", fzf.keymaps,           { desc = "Find keymaps" })
-map("n", "<leader>mk", fzf.marks,             { desc = "Find marks" })
+map("n", "<leader>fk", fzf.keymaps,           { desc = "Find keymaps" })
+map("n", "<leader>fm", fzf.marks,             { desc = "Find marks" })
 
-map("n", "<leader>cc", fzf.commands,          { desc = "Find commands" })
+map("n", "<leader>fc", fzf.commands,          { desc = "Find commands" })
 
-map("n", "<leader>:", fzf.command_history,    { desc = "Command history" })
+map("n", "<leader>f:", fzf.command_history,    { desc = "Command history" })
 
 
 -- ======================
@@ -301,7 +286,7 @@ map("n", "<C-]>", function()
     vim.diagnostic.jump({ count = 1 })
 end, { desc = "Next diagnostic" })
 
-map("n", "<C-[>", function()
+map("n", "<C-S-]>", function()
     vim.diagnostic.jump({ count = -1 })
 end, { desc = "Previous diagnostic" })
 
@@ -325,7 +310,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         map("n", "gy", fzf_lua.lsp_typedefs,        { buffer = args.buf, desc = "Go to type definition" })
         map("n", "gi", fzf_lua.lsp_implementations, { buffer = args.buf, desc = "Go to implementation" })
         map("n", "gr", fzf_lua.lsp_references,      { buffer = args.buf, desc = "Go to references" })
-        map("n", "<leader>ll",  vim.lsp.buf.hover,           { buffer = args.buf, desc = "Show hover information" })
+        map("n", "<leader>ll",  vim.lsp.buf.hover,  { buffer = args.buf, desc = "Show hover information" })
     end,
 })
 
