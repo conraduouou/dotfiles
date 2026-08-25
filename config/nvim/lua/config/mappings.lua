@@ -62,16 +62,6 @@ map("n", "<C-S-l>", "<cmd>bnext<cr>",         { desc = "Next buffer" })
 -- Center when going to bottom
 map("n", "G", "Gzz")
 
--- CoC navigation
-map("n", "gd", "<Plug>(coc-definition)",      { silent = true })
-map("n", "gy", "<Plug>(coc-type-definition)", { silent = true })
-map("n", "gi", "<Plug>(coc-implementation)",  { silent = true })
-map("n", "gr", "<Plug>(coc-references)",      { silent = true })
-
-map("n", "K", function()
-    vim.fn.CocActionAsync("doHover")
-end)
-
 
 -- ======================
 -- Visual mode
@@ -82,20 +72,14 @@ map("v", "<", "<gv",                          { desc = "Indent backwards" })
 
 
 -- ======================
--- Insert mode completion
+-- Insert mode
 -- ======================
+-- For completion keymaps, refer to plugins/blink.cmp.lua
 
-map("i", "<Tab>", function()
-    return vim.fn.pumvisible() == 1 and "<C-n>" or "<Tab>"
-end, { expr = true })
-
-map("i", "<S-Tab>", function()
-    return vim.fn.pumvisible() == 1 and "<C-p>" or "<S-Tab>"
-end, { expr = true })
-
-map("i", "<CR>", function()
-    return vim.fn.pumvisible() == 1 and "<C-y>" or "<CR>"
-end, { expr = true })
+map("i", "<C-h>", "<Left>")
+map("i", "<C-j>", "<Down>")
+map("i", "<C-k>", "<Up>")
+map("i", "<C-l>", "<Right>")
 
 -- ======================
 -- Escape remaps
@@ -311,6 +295,16 @@ map("n", "<leader>dp", "<Plug>(coc-diagnostic-prev)",       { desc = "Previous d
 map("n", "<leader>dn", "<Plug>(coc-diagnostic-next)",       { desc = "Next diagnostic" })
 map("n", "<leader>dl", "<Cmd>CocList diagnostics<CR>",      { desc = "List diagnostics" })
 map("n", "<leader>dh", "<Cmd>CocCommand diagnostics.showLineDiagnostics<CR>", { desc = "Show line diagnostics" })
+
+-- CoC navigation
+map("n", "gd", "<Plug>(coc-definition)",      { silent = true })
+map("n", "gy", "<Plug>(coc-type-definition)", { silent = true })
+map("n", "gi", "<Plug>(coc-implementation)",  { silent = true })
+map("n", "gr", "<Plug>(coc-references)",      { silent = true })
+
+map("n", "K", function()
+    vim.fn.CocActionAsync("doHover")
+end)
 
 -- ======================
 -- Miscellaneous

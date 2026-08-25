@@ -31,7 +31,7 @@ end
 
 -- translate cmd to ctrl when in neovim or fzf
 local function cmd_or_ctrl(key, action)
-    return wezterm.action_callback(function(window, pane)
+    local processed_action = wezterm.action_callback(function(window, pane)
         if is_neovim(pane) or is_fzf(pane) then
             window:perform_action(
                 act.SendKey {
@@ -44,6 +44,12 @@ local function cmd_or_ctrl(key, action)
             window:perform_action(action, pane)
         end
     end)
+
+    return {
+        key = key,
+        mods = ctrl,
+        action = processed_action,
+    }
 end
 
 -- Handle repeating actions
@@ -72,38 +78,10 @@ function M.apply(config)
         -- Instant Navigation
         -- =========================================
 
-        {
-            key = "h",
-            mods = ctrl,
-            action = cmd_or_ctrl(
-                "h",
-                act.ActivatePaneDirection("Left")
-            ),
-        },
-        {
-            key = "j",
-            mods = ctrl,
-            action = cmd_or_ctrl(
-                "j",
-                act.ActivatePaneDirection("Down")
-            ),
-        },
-        {
-            key = "k",
-            mods = ctrl,
-            action = cmd_or_ctrl(
-                "k",
-                act.ActivatePaneDirection("Up")
-            ),
-        },
-        {
-            key = "l",
-            mods = ctrl,
-            action = cmd_or_ctrl(
-                "l",
-                act.ActivatePaneDirection("Right")
-            ),
-        },
+        cmd_or_ctrl("h", act.ActivatePaneDirection("Left")),
+        cmd_or_ctrl("j", act.ActivatePaneDirection("Down")),
+        cmd_or_ctrl("k", act.ActivatePaneDirection("Up")),
+        cmd_or_ctrl("l", act.ActivatePaneDirection("Right")),
 
         -- =========================================
         -- Splits
@@ -386,24 +364,24 @@ function M.apply(config)
 
     if not is_windows then
         for _, key in ipairs({
-            "d", -- half-page down
-            "u", -- half-page up
-            "o", -- jump last position
-            "i", -- jump next position
-            "a", -- increment
-            "x", -- decrement
-            "e", -- nudge down
-            "y", -- nudge up
-            "r", -- redo
-            "v", -- visual-block and paste
+            { key = "d", code = 100 }, -- half-page down
+            { key = "u", code = 117 }, -- half-page up
+            { key = "o", code = 111 }, -- jump last position
+            { key = "i", code = 105 }, -- jump next position
+            { key = "a", code = 97 },  -- increment
+            { key = "x", code = 120 }, -- decrement
+            { key = "e", code = 101 }, -- nudge down
+            { key = "y", code = 121 }, -- nudge up
+            { key = "r", code = 114 }, -- redo
+            { key = "v", code = 118 }, -- visual-block and paste
+            { key = ",", code = 44 },  -- open blink cmp autocomplete
         }) do
             table.insert(config.keys, {
-                key = key,
+                key = key.key,
                 mods = "CMD",
-                action = act.SendKey {
-                    key = key,
-                    mods = "CTRL",
-                }
+                action = act.SendString(
+                    string.format("\27[%d;5u", key.code)
+                )
             })
         end
     end
