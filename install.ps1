@@ -173,9 +173,11 @@ function Append-GitInclude {
 
     $Content = Get-Content $GitConfig -Raw
 
-    if ($Content.Contains("# >>> dotfiles install >>>")) {
-        Write-Host "Git config already appended."
-        return
+    if ($null -ne $Content) {
+        if ($Content.Contains("# >>> dotfiles install >>>")) {
+            Write-Host "Git config already appended."
+            return
+        }
     }
 
     Add-Content $GitConfig @"
