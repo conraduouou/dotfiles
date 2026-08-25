@@ -249,6 +249,8 @@ function Main {
 
     Install-Packages
 
+    RefreshEnv.cmd
+
     Write-Host ""
     Write-Host "Installing dotfiles..."
     Write-Host ""
