@@ -305,14 +305,7 @@ function M.apply(config)
         -- Miscellaneous
         -- =========================================
 
-        {
-            key = "v",
-            mods = "CTRL",
-            action = cmd_or_ctrl(
-                "v",
-                act.PasteFrom("Clipboard")
-            ),
-        },
+        cmd_or_ctrl("v", act.PasteFrom("Clipboard")),
         {
             key = "q",
             mods = "CMD",
