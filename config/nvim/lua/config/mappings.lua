@@ -78,10 +78,10 @@ map("v", "<", "<gv",                          { desc = "Indent backwards" })
 -- ======================
 -- For completion keymaps, refer to plugins/blink.cmp.lua
 
-map("i", "<C-h>", "<Left>")
-map("i", "<C-j>", "<Down>")
-map("i", "<C-k>", "<Up>")
-map("i", "<C-l>", "<Right>")
+map("i", "<C-h>", "<C-o>h")
+map("i", "<C-j>", "<C-o>j")
+map("i", "<C-k>", "<C-o>k")
+map("i", "<C-l>", "<C-o>l")
 
 
 -- ======================
