@@ -4,6 +4,8 @@ local map = vim.keymap.set
 -- Normal mode
 -- ======================
 
+map("n", "<Esc>", "<Esc>", { desc = "Escape" })
+
 -- to be able to navigate with panes and nvim, like vim-tmux-navigator
 local function activate_pane(direction)
     -- for future support of other terminals
@@ -137,7 +139,7 @@ local function directional_resize(key)
     local current = vim.fn.winnr()
     local amount = movement_keys[key] and 1 or 5
     key = string.lower(key)
-    
+
     -- if the current window is the only window in the column
     local is_only_vertical = vim.fn.winnr("1k") == vim.fn.winnr("1j")
 
@@ -181,6 +183,8 @@ local function repeatable(key)
 
     local timer = vim.uv.new_timer()
 
+    if not timer then return end
+
     local name = "resize"
     local id = vim.api.nvim_create_namespace(name)
 
@@ -193,7 +197,7 @@ local function repeatable(key)
         vim.on_key(nil, id)
     end
 
-    local function callback(key, typed)
+    local function callback(_, typed)
         if movement_keys[string.lower(typed)] then
             directional_resize(typed)
             timer:stop()
@@ -288,23 +292,42 @@ map("n", "<leader>ge", "<Cmd>Gedit<CR>",      { desc = "Edit Git version" })
 
 
 -- ======================
--- Diagnostics (CoC)
+-- Diagnostics (LSP)
 -- ======================
 
-map("n", "<leader>dp", "<Plug>(coc-diagnostic-prev)",       { desc = "Previous diagnostic" })
-map("n", "<leader>dn", "<Plug>(coc-diagnostic-next)",       { desc = "Next diagnostic" })
-map("n", "<leader>dl", "<Cmd>CocList diagnostics<CR>",      { desc = "List diagnostics" })
-map("n", "<leader>dh", "<Cmd>CocCommand diagnostics.showLineDiagnostics<CR>", { desc = "Show line diagnostics" })
+local fzf_lua = require("fzf-lua")
 
--- CoC navigation
-map("n", "gd", "<Plug>(coc-definition)",      { silent = true })
-map("n", "gy", "<Plug>(coc-type-definition)", { silent = true })
-map("n", "gi", "<Plug>(coc-implementation)",  { silent = true })
-map("n", "gr", "<Plug>(coc-references)",      { silent = true })
+map("n", "<C-]>", function()
+    vim.diagnostic.jump({ count = 1 })
+end, { desc = "Next diagnostic" })
 
-map("n", "K", function()
-    vim.fn.CocActionAsync("doHover")
-end)
+map("n", "<C-[>", function()
+    vim.diagnostic.jump({ count = -1 })
+end, { desc = "Previous diagnostic" })
+
+map("n", "<leader>dl", fzf_lua.diagnostics_document, {
+    desc = "List document diagnostics",
+})
+
+map("n", "<leader>dL", fzf_lua.diagnostics_workspace, {
+    desc = "List workspace diagnostics",
+})
+
+map("n", "<leader>dd", vim.diagnostic.open_float, { desc = "Show line diagnostics" })
+
+-- ======================
+-- LSP navigation
+-- ======================
+
+vim.api.nvim_create_autocmd("LspAttach", {
+    callback = function(args)
+        map("n", "gd", fzf_lua.lsp_definitions,     { buffer = args.buf, desc = "Go to definition" })
+        map("n", "gy", fzf_lua.lsp_typedefs,        { buffer = args.buf, desc = "Go to type definition" })
+        map("n", "gi", fzf_lua.lsp_implementations, { buffer = args.buf, desc = "Go to implementation" })
+        map("n", "gr", fzf_lua.lsp_references,      { buffer = args.buf, desc = "Go to references" })
+        map("n", "<leader>ll",  vim.lsp.buf.hover,           { buffer = args.buf, desc = "Show hover information" })
+    end,
+})
 
 -- ======================
 -- Miscellaneous
