@@ -251,7 +251,8 @@ function Main {
 
     Install-Packages
 
-    RefreshEnv.cmd
+    Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
+    refreshenv
 
     Write-Host ""
     Write-Host "Installing dotfiles..."
