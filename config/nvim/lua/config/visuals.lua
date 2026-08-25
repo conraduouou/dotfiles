@@ -59,32 +59,55 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 -- Statusline
 -- ==========================================
 
-_G.buffers = function()
-    local result = {}
+-- _G.buffers = function()
+--     local result = {}
 
-    for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
-        if vim.api.nvim_buf_is_valid(bufnr)
-            and vim.api.nvim_buf_is_loaded(bufnr)
-            and vim.bo[bufnr].buflisted
-        then
-            local name = vim.fn.bufname(bufnr)
+--     for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+--         if vim.api.nvim_buf_is_valid(bufnr)
+--             and vim.api.nvim_buf_is_loaded(bufnr)
+--             and vim.bo[bufnr].buflisted
+--         then
+--             local name = vim.fn.bufname(bufnr)
 
-            if name == "" then
-                name = "No Name"
-            else
-                name = vim.fn.fnamemodify(name, ":t")
-            end
+--             if name == "" then
+--                 name = "No Name"
+--             else
+--                 name = vim.fn.fnamemodify(name, ":t")
+--             end
 
-            if bufnr == vim.api.nvim_get_current_buf() then
-                table.insert(result, "[" .. name .. "]")
-            else
-                table.insert(result, name)
-            end
-        end
-    end
+--             if bufnr == vim.api.nvim_get_current_buf() then
+--                 table.insert(result, "[" .. name .. "]")
+--             else
+--                 table.insert(result, name)
+--             end
+--         end
+--     end
 
-    return table.concat(result, "  ")
-end
+--     return table.concat(result, "  ")
+-- end
 
-vim.o.statusline = "%{v:lua.buffers()}%=%l:%c"
+-- _G.diagnostics = function()
+--     local counts = vim.diagnostic.count(0)
 
+--     local result = {}
+
+--     if counts[vim.diagnostic.severity.ERROR] then
+--         table.insert(result, "E:" .. counts[vim.diagnostic.severity.ERROR])
+--     end
+
+--     if counts[vim.diagnostic.severity.WARN] then
+--         table.insert(result, "W:" .. counts[vim.diagnostic.severity.WARN])
+--     end
+
+--     if counts[vim.diagnostic.severity.INFO] then
+--         table.insert(result, "I:" .. counts[vim.diagnostic.severity.INFO])
+--     end
+
+--     if counts[vim.diagnostic.severity.HINT] then
+--         table.insert(result, "H:" .. counts[vim.diagnostic.severity.HINT])
+--     end
+
+--     return table.concat(result, " ")
+-- end
+
+-- vim.o.statusline = "%{v:lua.buffers()}%= %{v:lua.diagnostics()}  %l:%c"
