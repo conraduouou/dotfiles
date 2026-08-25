@@ -15,6 +15,7 @@
 	side-by-side = true
 
 [diff]
+    external = difft
 	tool = vimdiff
 
 [difftool]
