@@ -7,6 +7,8 @@ brew "vim"
 brew "neovim"
 cask "wezterm"
 brew "starship"
+brew "delta"
+brew "difftastic"
 
 # Navigation
 brew "eza"
