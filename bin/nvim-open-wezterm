@@ -48,7 +48,7 @@ fi
 # No existing Nvim instance: create one in a new WezTerm pane.
 pane_id="$(
     wezterm cli split-pane \
-        --right \
+        --left \
         --cwd "$PWD" \
         -- nvim --listen "$socket" "$@"
 )"

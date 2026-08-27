@@ -32,8 +32,8 @@ powershell.exe -NoProfile -Command "if (Test-Path -LiteralPath '%pipe%') { exit 
 
 if not errorlevel 1 goto remote_file
 
-rem No server yet: create a pane to the right.
-wezterm cli split-pane --right --pane-id "%WEZTERM_PANE%" -- nvim.exe --listen "%pipe%" "%file%"
+rem No server yet: create a pane to the left.
+wezterm cli split-pane --left --pane-id "%WEZTERM_PANE%" -- nvim.exe --listen "%pipe%" "%file%"
 goto :eof
 
 :remote_file
