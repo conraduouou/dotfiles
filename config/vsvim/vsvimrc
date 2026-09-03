@@ -1,0 +1,4 @@
+" .vsvimrc
+
+" Actual init source
+source ~/.config/vsvim/init.vim
