@@ -29,6 +29,10 @@ local function smart_navigate(direction, terminal_direction)
     end
 end
 
+map({ "n", "v" }, "j", "gj")
+
+map({ "n", "v" }, "k", "gk")
+
 map("n", "<C-h>", function()
     smart_navigate("h", "left")
 end)

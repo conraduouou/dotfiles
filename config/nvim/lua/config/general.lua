@@ -26,3 +26,4 @@ opt.softtabstop = 1
 opt.expandtab = true
 opt.ignorecase = true
 opt.smartcase = true
+opt.scrolloff = 8
