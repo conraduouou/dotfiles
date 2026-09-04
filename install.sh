@@ -2,6 +2,10 @@
 
 set -euo pipefail
 
+# this particular code can be removed if the following PR is resolved:
+# https://github.com/charmbracelet/gum/pull/1142
+export CLICOLOR_FORCE=1
+
 ################################################################################
 # Paths
 ################################################################################
@@ -14,8 +18,7 @@ REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 install_homebrew() {
 
-    if command -v brew >/dev/null 2>&1; then
-        echo "Homebrew already installed."
+    if command -v brew &>/dev/null; then
         return
     fi
 
@@ -35,7 +38,50 @@ install_homebrew() {
     fi
 }
 
+install_gum() {
+
+    if brew list gum &>/dev/null; then
+        return
+    fi
+
+    echo "Installing gum..."
+
+    brew install gum
+}
+
+install_packages() {
+
+    BREWFILE=$REPO/Brewfile
+    PACKAGES="$(sed -E -n '/brew|cask/s/.*"([^"]*)"/\1/p' "$BREWFILE")"
+
+    HEADER="Choose packages to install (This will install them when you proceed)"
+    PACKAGES_TO_INSTALL=$(echo "$PACKAGES" | gum choose --no-limit --header "$HEADER" --selected "*")
+
+    cp "$BREWFILE" "$BREWFILE-temp"
+
+    grep "$PACKAGES_TO_INSTALL" "$BREWFILE-temp" > "$BREWFILE"
+
+    echo "$(gum_style "brew bundle") is running..."
+    brew bundle
+
+    rm "$BREWFILE"
+    mv "$BREWFILE-temp" "$BREWFILE"
+}
+
+welcome() {
+
+    gum style --border-foreground 212 --border double --padding "1 6" "Hello $USER!"
+    echo
+
+    HEADER="Ready to install $(gum_style "dotfiles")?"
+    CHOICE=$(gum choose "Yes" "No" --header "$HEADER")
+    echo
+
+    echo "Doesn't matter... We're going to install $(gum style --italic --foreground 212 anyway!)"
+}
+
 backup() {
+
     local target="$1"
 
     [[ ! -e "$target" ]] && return
@@ -43,7 +89,7 @@ backup() {
     local timestamp
     timestamp="$(date +"%Y%m%d-%H%M%S")"
 
-    echo "Backing up $target"
+    gum_style_fade "Backing up $target"
 
     mv "$target" "$target.backup-$timestamp"
 }
@@ -60,11 +106,11 @@ link() {
 
         # Already linked to our dotfiles? Nothing to do.
         if [[ "$current" == "$REPO/$source" ]]; then
-            echo "Already linked: $target"
+            gum_style_fade "Already linked: $target"
             return
         fi
 
-        echo "Removing old symlink: $target"
+        gum_style_fade "Removing old symlink: $target"
         rm "$target"
     fi
 
@@ -72,7 +118,7 @@ link() {
 
     ln -s "$REPO/$source" "$target"
 
-    echo "Linked $target"
+    echo "Linked $(gum_style "$target")"
 }
 
 copy() {
@@ -85,12 +131,14 @@ copy() {
 
     cp -R "$REPO/$source" "$target"
 
-    echo "Copied $target"
+    gum_style_fade "Copied $target"
 }
 
 install_manifest() {
 
     local manifest="$1"
+
+    echo "Installing $(gum_style "$1")..."
 
     while IFS='|' read -r source target
     do
@@ -110,7 +158,6 @@ install_manifest() {
         link "$source" "$HOME/$target"
 
     done < "$REPO/manifest/$manifest"
-
 }
 
 append_git_include() {
@@ -121,7 +168,7 @@ append_git_include() {
 
     # Already installed?
     if grep -Fq "# >>> dotfiles install >>>" "$gitconfig"; then
-        echo ".gitconfig already configured."
+        gum_style_fade ".gitconfig already configured."
         return
     fi
 
@@ -133,20 +180,21 @@ append_git_include() {
 # <<< dotfiles install <<<
 EOF
 
-    echo "Updated .gitconfig."
+    echo "Updated $(gum_style ".gitconfig.")"
 }
 
 install_starshipfile() {
+
     local starshipfile="$HOME/.config/starship.toml"
 
     if [ -f "$starshipfile" ]; then
-        echo "Starship preset already installed."
+        gum_style_fade "Starship preset already installed."
         return
     fi
 
     starship preset pure-preset -o "$starshipfile"
 
-    echo "Installed starship pure preset."
+    echo "Installed $(gum_style "starship pure preset")."
 }
 
 install_vimplug() {
@@ -154,14 +202,36 @@ install_vimplug() {
     local plugfile="$HOME/.config/vim/autoload/plug.vim"
 
     if [ -f "$plugfile" ]; then
-        echo "plug.vim already installed."
+        gum_style_fade "plug.vim already installed."
         return
     fi
 
     curl -fLo "$plugfile" --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-    echo "Installed plug.vim"
+    echo "Installed $(gum_style "plug.vim")."
+}
+
+gum_style() {
+
+    text=$1
+
+    if (( $# >= 2 )); then
+        color=$2
+    fi
+
+    gum style --foreground "${color:-212}" "$text"
+}
+
+gum_style_fade() {
+    
+    text=$1
+
+    if (( $# >= 2 )); then
+        color=$2
+    fi
+
+    gum style --foreground "${color:-241}" "$text"
 }
 
 ################################################################################
@@ -170,29 +240,39 @@ install_vimplug() {
 
 main() {
 
+    # Step 1: check if homebrew is installed
     install_homebrew
-
-    echo
-    echo "Installing Homebrew packages..."
     echo
 
-    brew bundle --file="$REPO/Brewfile"
-
-    echo
-    echo "Installing dotfiles..."
+    # Step 2: check if gum is installed on home brew
+    install_gum
     echo
 
+    # Step 3: Perform gum operations
+    welcome
+    echo
+
+    sleep 1
+
+    # Step 4: commence installation of picked packages
+    install_packages
+    echo
+
+    # Step 5: commence installation of symlinks
     install_manifest "common.manifest"
+    echo
+
     install_manifest "macos.manifest"
+    echo
 
-    chmod +x "$HOME/.local/bin/open-file"
-
+    # Step 6: do miscellaneous things
     append_git_include
     install_starshipfile
     install_vimplug
 
     echo
-    echo "Done!"
+    echo "We are $(gum style --foreground 212 "DONE")!"
+    echo
 }
 
 main "$@"

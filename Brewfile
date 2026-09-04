@@ -19,6 +19,7 @@ brew "zoxide"
 brew "node"
 
 # Utilities
+brew "gum"
 brew "bat"
 brew "fd"
 brew "ripgrep"
