@@ -11,3 +11,4 @@ require("config.visuals")
 
 -- LSP specifics
 require("lsp.luals")
+require("lsp.powershell")
