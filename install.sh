@@ -269,9 +269,9 @@ main() {
     append_git_include
     install_starshipfile
     install_vimplug
-
     echo
-    echo "We are $(gum style --foreground 212 "DONE")!"
+
+    echo "We are $(gum_style "DONE")!"
     echo
 }
 

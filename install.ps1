@@ -1,10 +1,15 @@
 $ErrorActionPreference = "Stop"
 
+# this particular code can be removed if the following PR is resolved:
+# https://github.com/charmbracelet/gum/pull/1142
+$env:CLICOLOR_FORCE = 1
+
 ###############################################################################
 # Paths
 ###############################################################################
 
 $Repo = Split-Path -Parent $MyInvocation.MyCommand.Path
+$Tools = Join-Path $HOME "Tools"
 
 ###############################################################################
 # Helpers
@@ -31,9 +36,55 @@ function Install-Chocolatey {
     )
 }
 
+function Install-Gum {
+
+    if (Get-Command gum -ErrorAction SilentlyContinue) {
+        Write-Host "gum already installed."
+        return
+    }
+
+    Write-Host "Installing gum..."
+
+    # TODO: Replace the below code once Chocolatey has gum
+    try {
+
+        curl.exe -fLo (Join-Path $Tools "gum.zip") `
+            "https://github.com/charmbracelet/gum/releases/download/v2.0.0/gum_2.0.0_Windows_x86_64.zip"
+
+        Expand-Archive (Join-Path $Tools "gum.zip") $Tools
+        Move-Item (Join-Path $Tools "gum_2.0.0_Windows_x86_64") (Join-Path $Tools "gum")
+        Remove-Item (Join-Path $Tools "gum_*")
+        Remove-Item (Join-Path $Tools "gum.*")
+
+	. (Join-Path $Repo "config\powershell\path.ps1")
+
+        Write-Host "Installed gum."
+
+    } catch {
+
+        Write-Host "Failed to get gum zip. Please install manually."
+
+    }
+    
+}
+
 function Install-Packages {
 
-    $PackageFile = Join-Path $Repo "Chocolateyfile"
+    $Packages = Get-Content (Join-Path $Repo "Chocolateyfile")
+    $Packages = $Packages -match "^((?!gum).)*$"
+
+    $Header = "Choose packages to install (This will install them when you proceed)"
+    $PackagesToInstall = gum choose --no-limit --header "$Header" --selected "*" $Packages
+
+    if ([string]::IsNullOrEmpty(($PackagesToInstall))) {
+        Gum-StyleFade "No packages selected. Skipping installation..."
+        return
+    }
+
+    Write-Host "Installing $(Gum-Style "packages")..."
+
+    $PackageFile = Join-Path $Repo "Chocolateyfile-temp"
+    Write-Output $PackagesToInstall | Out-File -FilePath $PackageFile
 
     $ChocoList = choco list | ForEach-Object { ($_ -split " ")[0] }
 
@@ -46,14 +97,28 @@ function Install-Packages {
             if ($Package.StartsWith("#")) { return }
 
             if ($ChocoList -contains $Package) {
-                Write-Host "$Package already installed. Skipping..."
+                Gum-StyleFade "$Package already installed. Skipping..."
                 return
             }
 
-            Write-Host "Installing $Package..."
+            Write-Host "Installing $(Gum-Style "$Package")..."
 
             choco install $Package -y
         }
+
+    Remove-Item $PackageFile
+}
+
+function Welcome-User {
+
+    gum style --border-foreground 212 --border double --padding "1 6" "Hello $USER!"
+    Write-Host ""
+
+    $Header = "Ready to install $(Gum-Style "dotfiles")?"
+    $Choice = $(gum choose "Yes" "No" --header "$HEADER")
+    Write-Host
+
+    Write-Host "Doesn't matter... We're going to install $(gum style --italic --foreground 212 anyway!)"
 }
 
 function Backup {
@@ -71,7 +136,7 @@ function Backup {
 
     $Timestamp = Get-Date -Format "yyyyMMdd-HHmmss"
 
-    Write-Host "Backing up $Target"
+    Gum-StyleFade "Backing up $Target"
 
     Move-Item $Target "$Target.backup-$Timestamp"
 }
@@ -100,7 +165,7 @@ function Link {
             $Current = $Item.Target
 
             if ($Current -eq $Source) {
-                Write-Host "Already linked $Destination"
+                Gum-StyleFade "Already linked $Destination"
                 return
             }
 
@@ -118,7 +183,7 @@ function Link {
             -Path $Destination `
             -Target $Source | Out-Null
 
-        Write-Host "Linked $Destination"
+        Write-Host "Linked $(Gum-Style "$Destination")"
 
     }
     catch {
@@ -135,6 +200,8 @@ function Install-Manifest {
     param(
         [string]$Manifest
     )
+
+    Write-Host "Installing $(Gum-Style $Manifest)..."
 
     Get-Content (Join-Path $Repo "manifest\$Manifest") | ForEach-Object {
 
@@ -175,7 +242,7 @@ function Append-GitInclude {
 
     if ($null -ne $Content) {
         if ($Content.Contains("# >>> dotfiles install >>>")) {
-            Write-Host "Git config already appended."
+            Gum-StyleFade "Git config already appended."
             return
         }
     }
@@ -188,7 +255,7 @@ function Append-GitInclude {
 # <<< dotfiles install <<<
 "@
 
-    Write-Host "Git config appended."
+    Write-Host "$(Gum-Style "Git config") appended."
 }
 
 function Install-StarshipFile {
@@ -196,13 +263,13 @@ function Install-StarshipFile {
     $StarshipFile = Join-Path $HOME ".config/starship.toml"
 
     if (Test-Path $StarshipFile) {
-        Write-Host "Starship preset already installed."
+        Gum-StyleFade "Starship preset already installed."
         return
     }
 
     &starship preset pure-preset -o $StarshipFile
 
-    Write-Host "Installed starship pure preset."
+    Write-Host "Installed $(Gum-Style "starship pure preset")."
 }
 
 function Install-VimPlug {
@@ -210,7 +277,7 @@ function Install-VimPlug {
     $PlugFile = Join-Path $HOME "vimfiles/autoload/plug.vim"
 
     if (Test-Path $PlugFile) {
-        Write-Host "plug.vim file already installed."
+        Gum-StyleFade "plug.vim file already installed."
         return
     }
 
@@ -224,7 +291,7 @@ function Install-VimPlug {
         curl.exe -fLo $PlugFile `
             "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
 
-        Write-Host "Installed plug.vim file"
+        Write-Host "Installed $(Gum-Style "plug.vim file.")"
 
     } catch {
 
@@ -233,40 +300,62 @@ function Install-VimPlug {
     }
 }
 
+function Gum-Style {
+
+    param(
+        [string] $Text,
+        [string] $Color
+    )
+
+    gum style --foreground "$([string]::IsNullOrEmpty(($Color)) ? 212 : $Color)" "$Text"
+}
+
+function Gum-StyleFade {
+    
+    param(
+        [string] $Text,
+        [string] $Color
+    )
+
+    gum style --foreground "$([string]::IsNullOrEmpty(($Color)) ? 241 : $Color)" "$Text"
+}
+
 ###############################################################################
 # Install
 ###############################################################################
 
 function Main {
 
-    Write-Host ""
-    Write-Host "Installing Chocolatey..."
-    Write-Host ""
-
     Install-Chocolatey
-
     Write-Host ""
-    Write-Host "Installing packages..."
+
+    Install-Gum
+    Write-Host ""
+
+    Welcome-User
     Write-Host ""
 
     Install-Packages
+    Write-Host ""
 
     Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
     refreshenv
-
     Write-Host ""
-    Write-Host "Installing dotfiles..."
-    Write-Host ""
+    . (Join-Path $Repo "config\powershell\path.ps1")
 
     Install-Manifest "common.manifest"
+    Write-Host ""
+
     Install-Manifest "windows.manifest"
+    Write-Host ""
 
     Append-GitInclude
     Install-StarshipFile
     Install-VimPlug
-
     Write-Host ""
-    Write-Host "Done!"
+
+    Write-Host "We are $(Gum-Style "DONE")!"
+    Write-Host ""
 }
 
 Main
