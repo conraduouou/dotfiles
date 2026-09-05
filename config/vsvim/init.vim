@@ -5,5 +5,5 @@ let mapleader = " "
 let maplocalleader = " "
 
 " Configs
-source config/general.vim
-source config/mappings.vim
+source ~/.config/vsvim/config/general.vim
+source ~/.config/vsvim/config/mappings.vim

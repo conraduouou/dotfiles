@@ -79,7 +79,7 @@ nnoremap <leader>bx :vsc Window.CloseDocumentWindow<CR>
 " ======================
 
 nnoremap <leader>w' <C-w>s
-nnoremap <leader>w; <C-w>v
+nnoremap <leader>w; :vsc Window.MoveToNewTabGroupRight<CR>
 nnoremap <leader>we <C-w>=
 nnoremap <leader>wx <C-w>q
 
