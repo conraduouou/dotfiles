@@ -102,9 +102,37 @@ map("i", "jk", "<Esc>",                       { desc = "Quick escape" })
 map("n", "<leader>bp", "<cmd>bprevious<cr>",  { desc = "Previous buffer" })
 map("n", "<leader>bn", "<cmd>bnext<cr>",      { desc = "Next buffer" })
 map("n", "<leader>bb", "<cmd>enew<cr>",       { desc = "New buffer" })
-map("n", "<leader>bx", "<cmd>bdelete<cr>",    { desc = "Delete buffer" })
 map("n", "<leader>bo", "<cmd>%bd|e#<cr>",     { desc = "Delete other buffers" })
 map("n", "<leader>bl", "<cmd>ls<cr>",         { desc = "List buffers" })
+
+local function delete_buffer()
+    local buffers = vim.api.nvim_list_bufs()
+    table.sort(buffers)
+
+    -- find first not unlisted buffer
+    local first_active = -1
+    for _, buffer in ipairs(buffers) do
+        if vim.api.nvim_buf_is_loaded(buffer) then
+            first_active = buffer
+            break
+        end
+    end
+
+    if first_active == -1 then return end
+
+    local current = vim.api.nvim_get_current_buf()
+
+    if current == first_active then vim.cmd("blast") else vim.cmd("bfirst") end
+
+    -- exit prematurely if switched buffer is the same loaded buffer
+    local after = vim.api.nvim_get_current_buf()
+    if current == after then return end
+
+    -- delete last buffer
+    vim.cmd("bdelete #")
+end
+
+map("n", "<leader>bx", delete_buffer,         { desc = "Delete buffer" })
 
 
 -- ======================
