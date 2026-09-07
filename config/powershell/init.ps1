@@ -9,7 +9,13 @@
 . ~/.config/powershell/aliases.ps1
 . ~/.config/powershell/functions.ps1
 
-Invoke-Expression (& { (zoxide init powershell | Out-String) } )
+# integrations
+. ~/.config/powershell/integrations/starship.ps1
+. ~/.config/powershell/integrations/zoxide.ps1
+. ~/.config/powershell/integrations/fzf.ps1
+. ~/.config/powershell/integrations/eza.ps1
+. ~/.config/powershell/integrations/vifm.ps1
+. ~/.config/powershell/integrations/nvim.ps1
 
 # For PSReadLine ergonomics
 Set-PSReadLineOption -PredictionSource History
