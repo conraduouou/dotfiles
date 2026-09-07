@@ -185,6 +185,11 @@ EOF
 
 install_starshipfile() {
 
+    if ! command -v starship &>/dev/null; then
+        gum_style_fade "Starship was not installed. Aborting acquisition of starship file."
+        return
+    fi
+
     local starshipfile="$HOME/.config/starship.toml"
 
     if [ -f "$starshipfile" ]; then

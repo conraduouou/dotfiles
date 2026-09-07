@@ -260,6 +260,11 @@ function Append-GitInclude {
 
 function Install-StarshipFile {
 
+    if (! (Get-Command starship -ErrorAction SilentlyContinue)) {
+        Gum-StyleFade "Starship was not installed. Aborting acquisition of starship file."
+        return
+    }
+
     $StarshipFile = Join-Path $HOME ".config/starship.toml"
 
     if (Test-Path $StarshipFile) {
