@@ -358,6 +358,12 @@ function M.apply(config)
         },
     }
 
+    -- The following mappings are for cmd to ctrl translations from wezterm to nvim 
+    -- 
+    -- Unlike those explicitly set in the config.keys table above, the keys below do
+    -- not have a specific command on wezterm; translated only for nvim's sake.
+    --
+    -- Should a key have a specific command on wezterm, map it using cmd_or_ctrl instead.
     if not is_windows then
         for _, key in ipairs({
             { key = "d", code = 100 }, -- half-page down
@@ -369,7 +375,18 @@ function M.apply(config)
             { key = "e", code = 101 }, -- nudge down
             { key = "y", code = 121 }, -- nudge up
             { key = "r", code = 114 }, -- redo
-            { key = "v", code = 118 }, -- visual-block and paste
+        }) do
+            table.insert(config.keys, {
+                key = key.key,
+                mods = "CMD",
+                action = act.SendKey {
+                    key = key.key,
+                    mods = "CTRL"
+                }
+            })
+        end
+
+        for _, key in ipairs({
             { key = ",", code = 44 },  -- open blink cmp autocomplete
             { key = "]", code = 93 },  -- next diagnostic
         }) do
