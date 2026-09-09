@@ -183,7 +183,7 @@ binding_modes:
           - 'wm-disable-binding-mode --name launch'
         bindings: ['2']
       - commands:
-          - 'shell-exec explorer'
+          - 'shell-exec devenv'
           - 'wm-disable-binding-mode --name launch'
         bindings: ['3']
       - commands:
@@ -194,6 +194,10 @@ binding_modes:
           - 'shell-exec msedge --profile-directory="Profile 1" edge://newtab'
           - 'wm-disable-binding-mode --name launch'
         bindings: ['shift+4']
+      - commands:
+          - 'shell-exec explorer'
+          - 'wm-disable-binding-mode --name launch'
+        bindings: ['5']
       - commands: ['wm-disable-binding-mode --name launch']
         bindings: ['escape', 'enter']
 
