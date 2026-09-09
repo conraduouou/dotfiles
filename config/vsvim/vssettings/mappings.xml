@@ -1,0 +1,19 @@
+<Shortcuts>
+    <!-- Navigation -->
+    <Shortcut Command="Window.NextTab" Scope="Global">Ctrl+Shift+L</Shortcut>
+    <Shortcut Command="Window.PreviousTab" Scope="Global">Ctrl+Shift+H</Shortcut>
+    <Shortcut Command="View.NavigateBackward" Scope="Global">Ctrl+O</Shortcut>
+    <Shortcut Command="View.NavigateForward" Scope="Global">Ctrl+Shift+O</Shortcut>
+
+    <!-- Workspace -->
+    <Shortcut Command="View.SolutionExplorer" Scope="Global">Ctrl+B, E</Shortcut>
+    <Shortcut Command="View.Terminal" Scope="Global">Ctrl+B, T</Shortcut>
+    <Shortcut Command="View.ErrorList" Scope="Global">Ctrl+B, D</Shortcut>
+    <Shortcut Command="View.Output" Scope="Global">Ctrl+B, O</Shortcut>
+    <Shortcut Command="View.GitHub.Copilot.Chat" Scope="Global">Ctrl+B, A</Shortcut>
+    <Shortcut Command="Window.CloseToolWindow" Scope="Global">Ctrl+B, X</Shortcut>
+
+    <!-- Diagnostics -->
+    <Shortcut Command="View.NextError" Scope="Global">Ctrl+]</Shortcut>
+    <Shortcut Command="View.PreviousError" Scope="Global">Ctrl+Shift+]</Shortcut>
+</Shortcuts>

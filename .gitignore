@@ -23,6 +23,10 @@ config/vifm/*
 !config/vifm/vifmrc
 
 
+# Vssettings data
+*/**/generated.vssettings
+
+
 # Editor folders
 .vscode/
 .idea/

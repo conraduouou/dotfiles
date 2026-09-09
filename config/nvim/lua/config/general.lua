@@ -27,3 +27,9 @@ opt.expandtab = true
 opt.ignorecase = true
 opt.smartcase = true
 opt.scrolloff = 8
+
+vim.filetype.add({
+    extension = {
+        vssettings = "xml",
+    }
+})
