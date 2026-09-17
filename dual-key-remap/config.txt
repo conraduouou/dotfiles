@@ -1,9 +1,9 @@
 # Copilot key: release Win and Shift, send Ctrl on its own
 remap_key=F23-LEFT_CTRL-LEFT_SHIFT
-when_alone=NOOP
+when_alone=CTRL
 with_other=CTRL
 
 # Remap left ctrl, by this time Windows key, to Windows when tapped, ctrl when held!
 remap_key=LEFT_CTRL
-when_alone=WIN
+when_alone=CTRL
 with_other=CTRL
