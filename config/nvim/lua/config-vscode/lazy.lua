@@ -19,7 +19,7 @@ vim.opt.rtp:prepend(lazypath)
 -- loading lazy.nvim so that mappings are correct.
 
 -- Setup lazy.nvim
-require("config-vscode.lazy").setup({
+require("lazy").setup({
     spec = {
         -- import your plugins
         { import = "plugins-common" },
