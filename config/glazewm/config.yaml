@@ -187,6 +187,10 @@ binding_modes:
           - 'wm-disable-binding-mode --name launch'
         bindings: ['3']
       - commands:
+          - 'shell-exec --hide-window code'
+          - 'wm-disable-binding-mode --name launch'
+        bindings: ['shift+3']
+      - commands:
           - 'shell-exec msedge --profile-directory="Default" edge://newtab'
           - 'wm-disable-binding-mode --name launch'
         bindings: ['4']
