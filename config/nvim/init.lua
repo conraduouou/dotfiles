@@ -3,12 +3,8 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Configs
-require("config.general")
-require("config.lazy")
-require("config.mappings")
-require("config.colorscheme")
-require("config.visuals")
-
--- LSP specifics
-require("lsp.luals")
-require("lsp.powershell")
+if vim.g.vscode then
+    require("init-vscode")
+else
+    require("init-wezterm")
+end

@@ -5,6 +5,8 @@ config/powershell                     |     .config/powershell
 config/glazewm                        |     .glzr/glazewm
 config/vsvim                          |     .config/vsvim
 config/vsvim/vsvimrc                  |     .vsvimrc
+config/vscode/keybindings.json        |     AppData/Roaming/Code/User/keybindings.json
+config/vscode/settings.json           |     AppData/Roaming/Code/User/settings.json
 
 bin/open-file.cmd                     |     .local/bin/open-file.cmd
 bin/nvim-open.cmd                     |     .local/bin/nvim-open.cmd

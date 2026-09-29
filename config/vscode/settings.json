@@ -1,0 +1,18 @@
+{
+    // General settings
+    "explorer.autoReveal": false,
+
+    // Editor-specific settings
+    "editor.scrolloff": 8,
+    "editor.lineNumbers": "relative",
+
+    // VSCode Neovim specific settings
+    "vscode-neovim.compositeKeys": {
+        "jk": {
+            "command": "vscode-neovim.escape"
+        }
+    },
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    }
+}
