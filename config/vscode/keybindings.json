@@ -90,6 +90,11 @@
     // VSCode operations
     // ============================================================
     {
+        "key": "ctrl+b w",
+        "command": "workbench.action.closeActiveEditor",
+        "when": "!editorTextFocus && !filesExplorerFocus && !searchViewletFocus && !terminalFocus && neovim.mode != 'cmdline'"
+    },
+    {
         "key": "ctrl+b e",
         "command": "workbench.view.explorer"
     },
