@@ -6,6 +6,12 @@
     "editor.scrolloff": 8,
     "editor.lineNumbers": "relative",
 
+    // Lua LSP settings
+    "Lua.runtime.version": "LuaJIT",
+    "Lua.workspace.library": [
+        "c:\\tools\\neovim\\nvim-win64\\share\\nvim\\runtime"
+    ],
+
     // VSCode Neovim specific settings
     "vscode-neovim.compositeKeys": {
         "jk": {
