@@ -89,21 +89,27 @@ way, way, *waaaay* back, and that I should start reading documentations.
 ***Common***
 - The `tmux.conf`, renamed to `.tmux.conf`, should be found in your home directory.
 - Take out `git` from the `config` directory and put it in your home directory's `.config`.
+- Take out `wezterm` from the `config` directory and put it in your home directory's `.config`.
+- Take out all `cmd` files from the `bin` directory and put it inside `~/.local/bin`.
 
 ***For Windows***
 - Take out `vim` from the `config` directory and rename it to `vimfiles`. Then, put it in your home directory.
 - Take out `nvim` from the `config` directory and put it in `~\AppData\Local`.
 - Take out `vifm` from the `config` directory and put it in `~\AppData\Roaming`.
 - Take out `powershell` from the `config` directory and put it in your home directory's `.config`.
+- Take out `glazewm` from the `config` directory and put it in `~\.glzr`.
+- Take out `vsvim` from the `config` directory and put it in your home directory's `.config`.
+- Put the `vsvimrc` file from the `vsvim` directory and put it in your home directory.
 - Put the `profile.ps1` file in your ~/Documents/PowerShell directory
 - Take out the `*.cmd` files from the `bin` directory and put it in your home directory's `.local\bin`.
-- Take out `config.txt` from the `dual-key-remap` directory and put it under `~\Tools\dual-key-remap`.
-- Take out `glazewm` from the `config` directory and put it in `~\.glzr`.
+- Take out all the files from the `dual-key-remap` directory and put it under `~\Tools\dual-key-remap`.
+- Take out all the files from the `vscode` directory and put it inside `~/AppData/Roaming/Code/User`.
 
 ***For macOS***
 - Rename the `config` to `.config` directory in your home directory.
 - Put the `zprofile`, `zshenv`, `zshrc` files in your home directory, all prefixed by `.`
 - Take out the extensionless files from the `bin` directory and put it in your home directory's `.local\bin`.
+- Take the `kitty.conf` file and put it inside `~/.config/kitty`
 
 
 ## For Vim dotfiles
