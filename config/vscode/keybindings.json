@@ -145,6 +145,18 @@
         }
     },
     {
+        "key": "ctrl+b z",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                "workbench.action.closePanel",
+                "workbench.action.closeSidebar",
+                "workbench.action.closeAuxiliaryBar"
+            ]
+        },
+        "when": "editorTextFocus"
+    },
+    {
         "key": "shift+j",
         "command": "list.expandSelectionDown",
         "when": "listFocus && listSupportsMultiselect && !inputFocus && !treestickyScrollFocused"
