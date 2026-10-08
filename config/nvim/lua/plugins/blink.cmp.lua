@@ -14,7 +14,6 @@ return {
                 "snippets",
                 "buffer",
                 "ripgrep",
-
                 "lazydev",
             },
             providers = {
