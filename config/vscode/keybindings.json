@@ -111,6 +111,11 @@
         "command": "workbench.action.terminal.toggleTerminal"
     },
     {
+        "key": "ctrl+b g",
+        "command": "workbench.view.scm",
+        "when": "workbench.scm.active"
+    },
+    {
         "key": "ctrl+b d",
         "command": "workbench.actions.view.problems"
     },
